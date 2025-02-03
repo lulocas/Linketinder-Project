@@ -35,16 +35,16 @@ class EmpresasTest {
         ArrayList<Empresas> empresas = new ArrayList<Empresas>();
 
         Scanner sc = new Scanner(System.in);
-        sc.nextLine(); // Nome
-        sc.nextLine(); // Email
-        sc.nextInt(); // CNPJ
-        sc.nextLine(); // País
-        sc.nextLine(); // Estado
-        sc.nextLine(); // CEP
-        sc.nextLine(); // Descrição
+        sc.nextLine(); 
+        sc.nextLine();
+        sc.nextInt();
+        sc.nextLine();
+        sc.nextLine();
+        sc.nextLine();
+        sc.nextLine();
 
-        // Intentionally leave a field empty
-        sc.nextLine(); // Competência 1
+
+        sc.nextLine();
 
         cadastroEmpresa(empresas);
 
