@@ -1,22 +1,21 @@
 plugins {
     id 'groovy'
+    id 'java'
 }
 
 group = 'org.example'
 version = '1.0-SNAPSHOT'
+
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.codehaus.groovy:groovy-xml:3.0.9'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
-    implementation 'junit:junit:4.12'
-}
-tasks.named('test', Test){
-    useJUnitPlatform()
+    runtimeOnly 'org.junit.vintage:junit-vintage-engine:5.7.1'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.10'
 }
 test {
-    useJUnitPlatform()
+    include 'Entities.CandidatosTest.testJunit'
 }
