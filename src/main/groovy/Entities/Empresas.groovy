@@ -23,34 +23,41 @@ class Empresas{
 
     static def cadastroEmpresa(ArrayList<Empresas> empresas){
         Scanner sc = new Scanner(System.in)
-
+        int aux = 0
+        int i = 0
         println ' '
-
-        print 'Nome: '
-        def nome = sc.nextLine()
-        print 'Email: '
-        def email = sc.nextLine()
-        print 'CNPJ: '
-        def cnpj = sc.nextInt()
-        sc.nextLine()
-        print 'País: '
-        def pais = sc.nextLine()
-        print 'Estado: '
-        def estado = sc.nextLine()
-        print 'CEP: '
-        def cep = sc.nextLine()
-        print 'Descrição: '
-        def descricao = sc.nextLine()
-        ArrayList<String> competencias = new ArrayList<String>()
-        println 'Escreva 3 competências que se espera dos candidatos: '
-        for(int i = 0; i < 3; i++){
-            print 'Competência ' + (i+1) + ': '
-            def competencia = sc.nextLine()
-            competencias.add(competencia)
+        while(aux == 0) {
+            print 'Nome: '
+            def nome = sc.nextLine()
+            print 'Email: '
+            def email = sc.nextLine()
+            print 'CNPJ: '
+            def cnpj = sc.nextInt()
+            sc.nextLine()
+            print 'País: '
+            def pais = sc.nextLine()
+            print 'Estado: '
+            def estado = sc.nextLine()
+            print 'CEP: '
+            def cep = sc.nextLine()
+            print 'Descrição: '
+            def descricao = sc.nextLine()
+            ArrayList<String> competencias = new ArrayList<String>()
+            println 'Escreva 3 competências que se espera dos candidatos: '
+            while (i < 3) {
+                print 'Competência ' + (i + 1) + ': '
+                def competencia = sc.nextLine()
+                competencias.add(competencia)
+                i++
+            }
+            if (nome == null || email == null || cnpj == null || pais == null || estado == null || cep == null || descricao == null) {
+                println 'Não pode deixar categorias vazias'
+            } else {
+                aux = 1
+                def empresa = new Empresas(nome, email, cnpj, pais, estado, cep, descricao, competencias)
+                empresas.add(empresa)
+            }
         }
-
-        def empresa = new Empresas(nome, email, cnpj, pais, estado, cep, descricao, competencias)
-        empresas.add(empresa)
     }
 
     void setCompetencias(ArrayList<String> competencias){
@@ -97,7 +104,7 @@ class Empresas{
         return this.CNPJ
     }
 
-    int getPais(){
+    String getPais(){
         return this.Pais;
     }
 
