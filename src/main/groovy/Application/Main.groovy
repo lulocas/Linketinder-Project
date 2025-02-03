@@ -1,4 +1,4 @@
-package org.example
+package Application
 
 import Entities.Candidatos
 import Entities.Empresas
@@ -108,72 +108,12 @@ def cadastro(ArrayList<Candidatos> candidatos, ArrayList<Empresas> empresas){
     opc = sc.nextInt()
 
     if(opc == 1){
-        cadastroCandidato(candidatos)
+        Candidatos.cadastroCandidato(candidatos)
     }else if(opc == 2){
-        cadastroEmpresa(empresas)
+        Empresas.cadastroEmpresa(empresas)
     }else{
         println ' '
         println 'Não existe essa opção'
         println ' '
     }
-}
-def cadastroCandidato(ArrayList<Candidatos> candidatos){
-    Scanner sc = new Scanner(System.in)
-
-    println ' '
-
-    print 'Nome: '
-    def nome = sc.nextLine()
-    print 'Email: '
-    def email = sc.nextLine()
-    print 'Idade: '
-    def idade = sc.nextInt()
-    sc.nextLine()
-    print 'Estado: '
-    def estado = sc.nextLine()
-    print 'CEP: '
-    def cep = sc.nextLine()
-    print 'Descrição: '
-    def descricao = sc.nextLine()
-    ArrayList<String> competencias = new ArrayList<String>()
-    println 'Escreva 3 competências'
-    for(int i = 0; i < 3; i++){
-        print 'Competência ' + (i+1) + ': '
-        def competencia = sc.nextLine()
-        competencias.add(competencia)
-    }
-
-    def candidato = new Candidatos(nome, email, idade, estado, cep, descricao, competencias)
-    candidatos.add(candidato)
-}
-def cadastroEmpresa(ArrayList<Empresas> empresas){
-    Scanner sc = new Scanner(System.in)
-
-    println ' '
-
-    print 'Nome: '
-    def nome = sc.nextLine()
-    print 'Email: '
-    def email = sc.nextLine()
-    print 'CNPJ: '
-    def cnpj = sc.nextInt()
-    sc.nextLine()
-    print 'País: '
-    def pais = sc.nextLine()
-    print 'Estado: '
-    def estado = sc.nextLine()
-    print 'CEP: '
-    def cep = sc.nextLine()
-    print 'Descrição: '
-    def descricao = sc.nextLine()
-    ArrayList<String> competencias = new ArrayList<String>()
-    println 'Escreva 3 competências que se espera dos candidatos: '
-    for(int i = 0; i < 3; i++){
-        print 'Competência ' + (i+1) + ': '
-        def competencia = sc.nextLine()
-        competencias.add(competencia)
-    }
-
-    def empresa = new Empresas(nome, email, cnpj, pais, estado, cep, descricao, competencias)
-    empresas.add(empresa)
 }

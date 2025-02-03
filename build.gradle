@@ -1,6 +1,5 @@
 plugins {
     id 'groovy'
-    id 'java'
 }
 
 group = 'org.example'
@@ -11,10 +10,13 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.groovy:groovy:4.0.14'
-    implementation 'org.spockframework:spock-core:2.1-groovy-3.0'
+    implementation 'org.codehaus.groovy:groovy-xml:3.0.9'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+    implementation 'junit:junit:4.12'
 }
-
+tasks.named('test', Test){
+    useJUnitPlatform()
+}
 test {
     useJUnitPlatform()
 }
