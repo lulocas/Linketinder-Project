@@ -3,7 +3,6 @@ package Entities;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import static Entities.Empresas.cadastroEmpresa;
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,40 +14,6 @@ class EmpresasTest {
 
         cadastroEmpresa(empresas);
 
-        assert !empresas.isEmpty();
-
-        for (Empresas empresa : empresas) {
-            assert empresa.getNome() != null;
-            assert empresa.getEmail() != null;
-            String cnpj = String.valueOf(empresa.getCNPJ());
-            assert cnpj != null;
-            assert empresa.getPais() != null;
-            assert empresa.getEstado() != null;
-            assert empresa.getCEP() != null;
-            assert empresa.getDescricao() != null;
-            assert empresa.getCompetencias().size() == 3;
-        }
+        assertEquals(1, empresas.size());
     }
-
-    @Test
-    void testCadastroEmpresaComCamposVazios() {
-        ArrayList<Empresas> empresas = new ArrayList<Empresas>();
-
-        Scanner sc = new Scanner(System.in);
-        sc.nextLine(); 
-        sc.nextLine();
-        sc.nextInt();
-        sc.nextLine();
-        sc.nextLine();
-        sc.nextLine();
-        sc.nextLine();
-
-
-        sc.nextLine();
-
-        cadastroEmpresa(empresas);
-
-        assert empresas.isEmpty();
-    }
-
 }

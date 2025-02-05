@@ -24,7 +24,6 @@ class Empresas{
     static def cadastroEmpresa(ArrayList<Empresas> empresas){
         Scanner sc = new Scanner(System.in)
         int aux = 0
-        int i = 0
         println ' '
         while(aux == 0) {
             print 'Nome: '
@@ -44,13 +43,12 @@ class Empresas{
             def descricao = sc.nextLine()
             ArrayList<String> competencias = new ArrayList<String>()
             println 'Escreva 3 competências que se espera dos candidatos: '
-            while (i < 3) {
-                print 'Competência ' + (i + 1) + ': '
+            for(int i = 0; i < 3; i++){
+                print 'Competência ' + (i+1) + ': '
                 def competencia = sc.nextLine()
                 competencias.add(competencia)
-                i++
             }
-            if (nome == null || email == null || cnpj == null || pais == null || estado == null || cep == null || descricao == null) {
+            if (nome.isEmpty() || email.isEmpty() || cnpj.toString().isEmpty() || pais.isEmpty() || estado.isEmpty() || cep.isEmpty() || descricao.isEmpty()) {
                 println 'Não pode deixar categorias vazias'
             } else {
                 aux = 1
