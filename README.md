@@ -13,5 +13,5 @@ Uma aplicação de emprego de vagas que consiste na junção do linkdin e tinder
 
 ## Autores
 
-- Luísa de Andrade Deschamps
+- Luísa de Andrade Deschamps (https://www.linkedin.com/in/luisa-deschamps-404a35311/)
 
