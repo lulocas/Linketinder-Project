@@ -19,41 +19,6 @@ class Candidatos{
         Competencias = competencias
     }
 
-    static def cadastroCandidato(ArrayList<Candidatos> candidatos){
-        Scanner sc = new Scanner(System.in)
-        int aux = 0
-        println ' '
-        while(aux == 0){
-            print 'Nome: '
-            def nome = sc.nextLine()
-            print 'Email: '
-            def email = sc.nextLine()
-            print 'Idade: '
-            def idade = sc.nextInt()
-            sc.nextLine()
-            print 'Estado: '
-            def estado = sc.nextLine()
-            print 'CEP: '
-            def cep = sc.nextLine()
-            print 'Descrição: '
-            def descricao = sc.nextLine()
-            ArrayList<String> competencias = new ArrayList<String>()
-            println 'Escreva 3 competências'
-            for(int i = 0; i < 3; i++){
-                print 'Competência ' + (i+1) + ': '
-                def competencia = sc.nextLine()
-                competencias.add(competencia)
-            }
-            if(nome.isEmpty() || email.isEmpty() || idade.toString().isEmpty() || estado.isEmpty() || cep.isEmpty() || descricao.isEmpty()){
-                println 'Não pode deixar categorias vazias'
-            }else{
-                aux = 1
-                def candidato = new Candidatos(nome, email, idade, estado, cep, descricao, competencias)
-                candidatos.add(candidato)
-            }
-        }
-    }
-
     void setCompetencias(ArrayList<String> competencias){
         Competencias = competencias;
     }

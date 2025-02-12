@@ -1,5 +1,6 @@
 package Application
 
+import Entities.Cadastro
 import Entities.Candidatos
 import Entities.Empresas
 
@@ -108,12 +109,85 @@ def cadastro(ArrayList<Candidatos> candidatos, ArrayList<Empresas> empresas){
     opc = sc.nextInt()
 
     if(opc == 1){
-        Candidatos.cadastroCandidato(candidatos)
+        cadastroCandidatos(candidatos)
     }else if(opc == 2){
-        Empresas.cadastroEmpresa(empresas)
+        cadastroEmpresas(empresas)
     }else{
         println ' '
         println 'Não existe essa opção'
         println ' '
+    }
+}
+
+def cadastroCandidatos(ArrayList<Candidatos> candidatos){
+    Cadastro cadastro = new Cadastro()
+    Scanner sc = new Scanner(System.in)
+    int aux = 0
+    println ' '
+    while(aux == 0){
+        print 'Nome: '
+        def nome = sc.nextLine()
+        print 'Email: '
+        def email = sc.nextLine()
+        print 'Idade: '
+        def idade = sc.nextInt()
+        sc.nextLine()
+        print 'Estado: '
+        def estado = sc.nextLine()
+        print 'CEP: '
+        def cep = sc.nextLine()
+        print 'Descrição: '
+        def descricao = sc.nextLine()
+        ArrayList<String> competencias = new ArrayList<String>()
+        println 'Escreva 3 competências'
+        for(int i = 0; i < 3; i++){
+            print 'Competência ' + (i+1) + ': '
+            def competencia = sc.nextLine()
+            competencias.add(competencia)
+        }
+        if(nome.isEmpty() || email.isEmpty() || idade.toString().isEmpty() || estado.isEmpty() || cep.isEmpty() || descricao.isEmpty()){
+            println 'Não pode deixar categorias vazias'
+        }else{
+            aux = 1
+            def candidato = new Candidatos(nome, email, idade, estado, cep, descricao, competencias)
+            cadastro.cadastroCandidato(candidatos, candidato)
+        }
+    }
+}
+
+def cadastroEmpresas(ArrayList<Empresas> empresas){
+    Cadastro cadastro = new Cadastro()
+    Scanner sc = new Scanner(System.in)
+    int aux = 0
+    println ' '
+    while(aux == 0) {
+        print 'Nome: '
+        def nome = sc.nextLine()
+        print 'Email: '
+        def email = sc.nextLine()
+        print 'CNPJ: '
+        def cnpj = sc.nextLine()
+        print 'País: '
+        def pais = sc.nextLine()
+        print 'Estado: '
+        def estado = sc.nextLine()
+        print 'CEP: '
+        def cep = sc.nextLine()
+        print 'Descrição: '
+        def descricao = sc.nextLine()
+        ArrayList<String> competencias = new ArrayList<String>()
+        println 'Escreva 3 competências que se espera dos candidatos: '
+        for(int i = 0; i < 3; i++){
+            print 'Competência ' + (i+1) + ': '
+            def competencia = sc.nextLine()
+            competencias.add(competencia)
+        }
+        if (nome.isEmpty() || email.isEmpty() || cnpj.toString().isEmpty() || pais.isEmpty() || estado.isEmpty() || cep.isEmpty() || descricao.isEmpty()) {
+            println 'Não pode deixar categorias vazias'
+        } else {
+            aux = 1
+            def empresa = new Empresas(nome, email, cnpj, pais, estado, cep, descricao, competencias)
+            cadastro.cadastroEmpresa(empresas, empresa)
+        }
     }
 }
