@@ -1,5 +1,6 @@
-package Entities;
-
+import Entities.Cadastro;
+import Entities.Candidatos;
+import Entities.Empresas;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,7 +10,7 @@ class CadastroTest {
 
     @Test
     void testCadastroCandidato() {
-        
+
         Cadastro cadastro = new Cadastro();
 
 
