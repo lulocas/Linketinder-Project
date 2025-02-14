@@ -1,0 +1,73 @@
+body{
+    /* background-color: #f60c49; */
+    background: rgb(252,70,107);
+    background: radial-gradient(circle, rgba(252,70,107,1) 2%, rgba(63,94,251,1) 90%);
+    color: #101942;
+    margin: 0%;
+    font-weight: bold;
+    font-family: Inter;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    margin-top: 2%;
+    gap: 10%;
+    justify-content: center;
+}
+.botoesNav{
+    width: 13%;
+    height: 40px;
+    border-radius: 25px;
+    border: none;
+    background-color: #fefeff;
+    font-size: 25px;    
+    font-weight: bold;
+    color:#101942;
+}
+
+#quadrado{
+    width: 90%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fefeff;
+    border-radius: 25px;
+    margin: 5%;
+    margin-top: 0%;
+}
+#busca{
+    width: 80%;
+    margin: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height: 40px;
+    border-radius: 25px;
+    background-color: #ededf5;
+    border: none;
+}
+#vagasOpcoes{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    margin-left: 10%;
+    width: 80%;
+    flex-wrap: wrap;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+.vagas{
+    width: 30%;
+    height: 200px;
+    background-color: #3f5efb;
+    border-radius: 25px;
+    color:#fefeff;
+    margin-top: 2%;
+}
