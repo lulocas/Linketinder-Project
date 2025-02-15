@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LinkeTinder</title>
+        <link rel="stylesheet" href="../css/edicaoE.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    </head>
+    
+    <body>
+        <main>
+            <div id="barranav">
+                <nav>
+                    <button id="botaoPerfil" class="botoesNav">Perfil</button>
+                    <button id="botaoCandidatos" class="botoesNav">Candidatos</button>
+                    <button id="botaoBuscar" class="botoesNav">Buscar</button>
+                </nav>
+            </div>
+            <div id="quadradoEdicao">
+                <div id="divEdicao">
+                    <div id="divFormularioEdicao">
+                        <h3 id="seuNome">Seu nome</h3>
+                        <div id="inputsPessoais">
+                            <label for="cnpj">CNPJ:</label>
+                            <input type="text" id="cnpj" name="cnpj" required class="inputEdicao" placeholder="CNPJ">
+                            <label for="pais">País:</label>
+                            <input type="text" id="pais" name="pais" required class="inputEdicao" placeholder="País">
+                            <label for="estado">Estado:</label>
+                            <input type="text" id="estado" name="estado" required class="inputEdicao" placeholder="Estado">
+                            <label for="cep" class="labelEdicao">CEP:</label>
+                            <input type="text" id="cep" name="cep" required class="inputEdicao" placeholder="CEP">
+                        </div>
+                        <label for="sobre">Sobre a empresa:</label>
+                        <textarea id="sobre" name="sobre" required class="inputEdicao" placeholder="Sobre a empresa"></textarea>
+                    </div>
+                    <div id="divBotoesEdicao">
+                        <button id="botaoSalvar">Salvar</button>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+    </body>
+</html>

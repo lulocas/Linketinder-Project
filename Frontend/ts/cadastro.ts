@@ -14,11 +14,11 @@ function cadastrar() {
         if (candidatoInput.checked) {
             usuario = 'candidato'
             alert(`Usuário ${usuario} cadastrado com sucesso!`)
-            window.location.href = 'edicao.html';
+            window.location.href = 'edicaoC.html';
         } else if (empresaInput.checked) {
             usuario = 'empresa'
             alert(`Usuário ${usuario} cadastrado com sucesso!`)
-            window.location.href = 'edicao.html';
+            window.location.href = 'edicaoE.html';
         }else {
             alert('Selecione um tipo de usuário!')
         }

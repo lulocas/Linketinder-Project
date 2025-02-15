@@ -47,6 +47,7 @@ nav{
     display: flex;
     flex-direction: column;
     width: 65%;
+    margin-left: 20%;
 }
 #divFormularioEdicao{
     display: flex;
@@ -94,21 +95,4 @@ nav{
 }
 #seuNome{
     font-size: 30px;
-}
-#imagemEdt{
-    width: 35%;
-    height: 800px;
-    margin: 5%;
-    margin-left: 0%;
-    background: rgb(16,25,66);
-    background: radial-gradient(circle, rgba(16,25,66,1) 0%, rgba(63,94,251,1) 100%);
-    border-radius: 25px;
-}
-#quadradoFoto{
-    width: 70%;
-    height: 85%;
-    background-color: #fefeff;
-    margin-left: 15%;
-    margin-top: 10%;
-    border-radius: 25px;
 }
