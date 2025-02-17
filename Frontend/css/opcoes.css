@@ -61,7 +61,7 @@ nav{
     width: 80%;
     flex-wrap: wrap;
     margin-bottom: 5%;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 .vagas{
     width: 30%;
@@ -70,4 +70,19 @@ nav{
     border-radius: 25px;
     color:#fefeff;
     margin-top: 2%;
+}
+.informacoes{
+    margin-left: 5%;
+}
+.botaoCandidatar{
+    width: 25%;
+    height: 40px;
+    border-radius: 25px;
+    border: none;
+    background-color: #fefeff;
+    font-size: 15px;    
+    font-weight: bold;
+    color:#101942;
+    margin-top: 5%;
+    margin-left: 70%;
 }

@@ -46,8 +46,7 @@ nav{
 #divEdicao{
     display: flex;
     flex-direction: column;
-    width: 85%;
-    margin-left: 10%;
+    width: 65%;
 }
 #divFormularioEdicao{
     display: flex;
@@ -56,25 +55,54 @@ nav{
     margin-top: 5%;
     gap: 20px;
 }
+
+#seuNome{
+    font-size: 30px;
+}
+
 #inputsPessoais{
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    gap: 20px;
     flex-wrap: wrap;
 }
-.inputEdicao{
-    background-color: #ededf5;
-    border-radius: 25px;
-    border: none;
-    min-height: 30px;
-    width: 38%;
+.identificacao{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(16, 25, 66, 0.5);
 }
-#divFormularioEdicao textarea{
+.pinformacao{
+    font-size: 20px;
+    font-weight: bold;
+    color:#101942;
+}
+.inputEdicao{
     max-width: 95%;
     min-width: 95%;
     max-height: 150px;
     min-height: 150px;
+    background-color: #ededf5;
+    border-radius: 25px;
+    border: none;
+    width: 38%;
 }
+#divHabilidades{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.phabilidades{
+    font-size: 20px;
+    font-weight: bold;
+    color:#101942;
+    background-color: rgb(16, 25, 66, 0.1);
+    border-radius: 25px;
+    width: 100px;
+    height: 40px; 
+    border: none;   
+}
+
 #divBotoesEdicao{
     display: flex;
     justify-content: end;
@@ -83,7 +111,7 @@ nav{
     margin-right: 10%;
     margin-bottom: 5%;
 }
-#botaoSalvar{
+#botaoEditar{
     width: 20%;
     height: 30px;
     border-radius: 25px;
@@ -93,6 +121,41 @@ nav{
     background-color: #3f5efb;
     color:#fefeff;
 }
-#seuNome{
-    font-size: 30px;
+
+#cardEdt{
+    width: 35%;
+    height: 800px;
+    margin: 5%;
+    margin-left: 0%;
+    background: rgb(16,25,66);
+    background: radial-gradient(circle, rgba(16,25,66,1) 0%, rgba(63,94,251,1) 100%);
+    border-radius: 25px;
+}
+#quadradoCard{
+    width: 70%;
+    height: 85%;
+    background-color: #fefeff;
+    margin-left: 15%;
+    margin-top: 10%;
+    border-radius: 25px;
+}
+.idCard{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(16, 25, 66, 0.5);
+    margin: 10%;
+    padding-top: 15%;
+}
+.pinformacaoCard{
+    font-size: 20px;
+    font-weight: bold;
+    color:#101942;
+    margin: 10%;
+}
+#divHabilidadesCard{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-left: 10%;
 }

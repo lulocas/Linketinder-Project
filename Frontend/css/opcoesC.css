@@ -28,71 +28,61 @@ nav{
     border-radius: 25px;
     border: none;
     background-color: #fefeff;
-    font-size: 25px;
+    font-size: 25px;    
     font-weight: bold;
     color:#101942;
 }
 
-#quadradoEdicao{
+#quadrado{
     width: 90%;
     height: 80%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     background-color: #fefeff;
     border-radius: 25px;
     margin: 5%;
     margin-top: 0%;
 }
-#divEdicao{
-    display: flex;
-    flex-direction: column;
-    width: 85%;
-    margin-left: 10%;
-}
-#divFormularioEdicao{
-    display: flex;
-    flex-direction: column;
+#busca{
+    width: 80%;
     margin: 10%;
-    margin-top: 5%;
-    gap: 20px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height: 40px;
+    border-radius: 25px;
+    background-color: #ededf5;
+    border: none;
 }
-#inputsPessoais{
+#vagasOpcoes{
     display: flex;
     flex-direction: row;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-.inputEdicao{
-    background-color: #ededf5;
-    border-radius: 25px;
-    border: none;
-    min-height: 30px;
-    width: 38%;
-}
-#divFormularioEdicao textarea{
-    max-width: 95%;
-    min-width: 95%;
-    max-height: 150px;
-    min-height: 150px;
-}
-#divBotoesEdicao{
-    display: flex;
-    justify-content: end;
-    align-items: end;
+    gap: 5%;
     margin-left: 10%;
-    margin-right: 10%;
+    width: 80%;
+    flex-wrap: wrap;
     margin-bottom: 5%;
+    margin-top: 2%;
 }
-#botaoSalvar{
-    width: 20%;
-    height: 30px;
+.vagas{
+    width: 30%;
+    height: 200px;
+    background-color: #3f5efb;
+    border-radius: 25px;
+    color:#fefeff;
+    margin-top: 2%;
+}
+.informacoes{
+    margin-left: 5%;
+}
+.botaoRecrutar{
+    width: 25%;
+    height: 40px;
     border-radius: 25px;
     border: none;
-    font-size: 15px;
+    background-color: #fefeff;
+    font-size: 15px;    
     font-weight: bold;
-    background-color: #3f5efb;
-    color:#fefeff;
-}
-#seuNome{
-    font-size: 30px;
+    color:#101942;
+    margin-top: 0%;
+    margin-left: 70%;
 }
