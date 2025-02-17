@@ -15,7 +15,7 @@
             <div id="barranav">
                 <nav>
                     <button id="botaoPerfil" class="botoesNav">Perfil</button>
-                    <button id="botaoVagas" class="botoesNav">Vagas</button>
+                    <button id="botaCandidatos" class="botoesNav">Candidatos</button>
                     <button id="botaoBuscar" class="botoesNav">Buscar</button>
                 </nav>
             </div>
@@ -42,13 +42,20 @@
                     <div id="divBotoesEdicao">
                         <button id="botaoEditar">Editar</button>
                     </div>
-                </div>
-                <div id="lateralDireito">
-                    <div id="cardEdt">
-                        <div id="quadradoCard">
-                            <button id="criarVaga">Criar vaga</button>
+                    <div class="vagas">
+                        <h2 id="tituloVagas">Vagas</h2>
+                        <div id="vaga1" class="vaga">
+                            <h3 class="tituloVaga">1.Desenvolvedor Full Stack</h3>
+                            <p class="identificacao">Descrição:</p>
+                            <p class="pinformacao">Desenvolvimento de aplicações web e mobile</p>
+                            <p class="identificacao">Requisitos:</p>
+                            <p class="pinformacao">React, Node.js, MongoDB</p>
+                            <p class="identificacao">Salário:</p>
+                            <p class="pinformacao">R$ 5.000,00</p>
                         </div>
                     </div>
+                </div>
+                <div id="lateralDireito">
                     <section class="grafico">
                         <div id="grafico">
                             <h3 id="tituloGrafico">Gráfico de habilidades</h3>
@@ -66,7 +73,12 @@
                                     <div id="barra3" class="barra"><p class="quantidade">2</p></div>
                                 </div>
                             </div>
-                    </section>
+                        </section>
+                        <div id="cardEdt">
+                            <div id="quadradoCard">
+                                <button id="criarVaga">Criar vaga</button>
+                            </div>
+                        </div>
                 </div>
             </div>
         </main>

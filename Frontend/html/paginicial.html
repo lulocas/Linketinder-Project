@@ -8,6 +8,25 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <script src="../node_modules/systemjs/dist/system.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                SystemJS.config({
+                    baseURL: '/ts',
+                    packages: {
+                        '/ts': {
+                            defaultExtension: 'js'
+                        }
+                    }
+                });
+
+                SystemJS.import('/ts/main.js').then(function(module) {
+                    console.log('Module loaded:', module);
+                }).catch(function(err) {
+                    console.error('Error loading module:', err);
+                });
+            });
+        </script>
     </head>
     
     <body>
@@ -40,6 +59,5 @@
                 </div>
             </div>
         </main>
-        <script src="../ts/cadastro.js"></script>
     </body>
 </html>
