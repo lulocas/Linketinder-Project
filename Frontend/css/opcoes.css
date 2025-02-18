@@ -32,6 +32,10 @@ nav{
     font-weight: bold;
     color:#101942;
 }
+.botoesNav:hover{
+    background-color: #3f5efb;
+    color:#fefeff;
+}
 
 #quadrado{
     width: 90%;
@@ -85,4 +89,8 @@ nav{
     color:#101942;
     margin-top: 5%;
     margin-left: 70%;
+}
+.botaoCandidatar:hover{
+    background: rgb(2,0,36);
+    background: linear-gradient(306deg, rgba(2,0,36,1) 0%, rgba(246,12,73,1) 0%, rgba(0,212,255,1) 100%);
 }

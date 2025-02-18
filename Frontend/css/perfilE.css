@@ -32,6 +32,10 @@ nav{
     font-weight: bold;
     color:#101942;
 }
+.botoesNav:hover{
+    background-color: #3f5efb;
+    color:#fefeff;
+}
 
 #quadradoEdicao{
     width: 90%;
@@ -95,6 +99,10 @@ nav{
     background-color: #3f5efb;
     color:#fefeff;
 }
+#botaoEditar:hover{
+    background-color: rgb(63, 94, 251, 0.8);
+    color:#fefeff;
+}
 
 #lateralDireito{
     display: flex;
@@ -132,6 +140,9 @@ nav{
     border-radius: 25px;
     font-size: 20px;
     font-weight: bold;
+}
+#criarVaga:hover{
+    background-color: rgb(63, 94, 251, 0.8);
 }
 
 .grafico{

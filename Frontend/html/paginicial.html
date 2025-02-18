@@ -4,29 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>LinkeTinder</title>
+        <link rel="icon" href="../L_20250217_214659_0000_page-0001.jpg" type="image/jpg">
         <link rel="stylesheet" href="../css/paginainial.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-        <script src="../node_modules/systemjs/dist/system.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                SystemJS.config({
-                    baseURL: '/ts',
-                    packages: {
-                        '/ts': {
-                            defaultExtension: 'js'
-                        }
-                    }
-                });
-
-                SystemJS.import('/ts/main.js').then(function(module) {
-                    console.log('Module loaded:', module);
-                }).catch(function(err) {
-                    console.error('Error loading module:', err);
-                });
-            });
-        </script>
+        <script src="../dist/bundle.js" defer></script>
     </head>
     
     <body>

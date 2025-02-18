@@ -1,3 +1,5 @@
+import { nomeTitulo, salvar} from './edicao';
+
 export const nome = document.getElementById('nome') as HTMLInputElement;
 export const email = document.getElementById('email') as HTMLInputElement;
 export const senha = document.getElementById('senha') as HTMLInputElement;
@@ -15,10 +17,12 @@ export function cadastrar() {
             usuario = 'candidato';
             alert(`Usuário ${usuario} cadastrado com sucesso!`);
             window.location.href = 'edicaoC.html';
+            nomeTitulo(nome.value);
         } else if (empresaInput.checked) {
             usuario = 'empresa';
             alert(`Usuário ${usuario} cadastrado com sucesso!`);
             window.location.href = 'edicaoE.html';
+            nomeTitulo(nome.value);
         } else {
             alert('Selecione um tipo de usuário!');
         }

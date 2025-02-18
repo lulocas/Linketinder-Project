@@ -32,6 +32,10 @@ nav{
     font-weight: bold;
     color:#101942;
 }
+.botoesNav:hover{
+    background-color: #3f5efb;
+    color:#fefeff;
+}
 
 #quadradoEdicao{
     width: 90%;
@@ -53,6 +57,7 @@ nav{
     flex-direction: column;
     margin: 10%;
     margin-top: 5%;
+    margin-bottom: 0%;
     gap: 20px;
 }
 
@@ -77,10 +82,8 @@ nav{
     color:#101942;
 }
 .inputEdicao{
-    max-width: 95%;
-    min-width: 95%;
-    max-height: 150px;
-    min-height: 150px;
+    min-height: 30px;
+    width: 38%;
     background-color: #ededf5;
     border-radius: 25px;
     border: none;
@@ -119,6 +122,10 @@ nav{
     font-size: 15px;
     font-weight: bold;
     background-color: #3f5efb;
+    color:#fefeff;
+}
+#botaoEditar:hover{
+    background-color: rgb(63, 94, 251, 0.8);
     color:#fefeff;
 }
 

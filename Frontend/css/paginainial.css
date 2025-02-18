@@ -82,8 +82,7 @@ main{
     border-radius: 25px;
     border: none;
     font-size: 15px;
-    background: rgb(2,0,36);
-    background: linear-gradient(137deg, rgba(2,0,36,1) 0%, rgba(246,12,73,1) 0%, rgba(0,212,255,1) 100%);
+    background-color: #3f5efb;
     color: #fefeff;
     font-weight: bold;
 }
