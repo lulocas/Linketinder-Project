@@ -1,0 +1,92 @@
+body{
+    /* background-color: #f60c49; */
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    color: #101942;
+    margin: 0%;
+    font-weight: bold;
+    font-family: Inter;
+    overflow: hidden;
+}
+main{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+#textoInicial{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 3%;
+    font-size: 30px;
+    margin-top: 10%;
+}
+
+#cadastroLogin{
+    width: 40%;
+    height: 100%;
+    background-color: #fefeff;
+    display: flex;
+    flex-direction: column;
+    margin: 3%;
+    border-radius: 25px;
+}
+#formularioCadastro{
+    margin: 10%;
+    margin-bottom: 2%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20%;
+    gap: 20px;
+}
+.inputCadastro{
+    width: 100%;
+    height: 40px;
+    border-radius: 25px;
+    font-size: 15px;
+    border: none;
+    background-color: #ededf5;
+}
+.labelCadastro{
+    font-size: 20px;
+}
+#botoesCeE{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+}
+#escolhaCeE{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 2%;
+    margin-top: 5%;
+}
+#botoesCadastroLogin{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 10%;
+}
+.cadastrarLogar{
+    width: 20%;
+    height: 30px;
+    border-radius: 25px;
+    border: none;
+    font-size: 15px;
+    background-color: #3f5efb;
+    color: #fefeff;
+    font-weight: bold;
+}
+.cadastrarLogar:hover{
+    background: rgb(2,0,36);
+    background: linear-gradient(306deg, rgba(2,0,36,1) 0%, rgba(246,12,73,1) 0%, rgba(0,212,255,1) 100%);
+}

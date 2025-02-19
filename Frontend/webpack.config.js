@@ -2,17 +2,23 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    mode: 'development', 
-    entry: './ts/main.ts',
+    mode: 'production',
+    entry: {
+        main: './ts/main.ts',
+        edicao: './ts/edicao.ts',
+        candidato: './ts/candidato.ts',
+        cadastro: './ts/cadastro.ts'
+
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
     plugins: [
         new CopyPlugin({
             patterns: [
-                { from: 'public'},
-                { from: 'assets', to: 'assets' }
+                {from: 'public', to: 'public'},
+                {from: 'css', to: 'css'}
             ]
         })
     ],
@@ -25,20 +31,6 @@ module.exports = {
                 test: /\.ts$/,
                 exclude: /node_modules/,
                 use: 'ts-loader'
-            },
-            {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
-                }
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader']
             }
         ]
     },
