@@ -1,5 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const cadastro_js_1 = require("./cadastro.js");
-cadastro_js_1.botao.addEventListener('click', cadastro_js_1.cadastrar);
+import { cadastrar, botao } from "./cadastro.js";
+botao.addEventListener('click', cadastrar);
 //# sourceMappingURL=index.js.map
