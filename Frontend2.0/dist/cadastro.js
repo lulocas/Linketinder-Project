@@ -5,6 +5,7 @@ const inputconfirma = document.getElementById('confirmarSenha');
 const candidatoInput = document.getElementById('candidatoBotao');
 const empresaInput = document.getElementById('empresaBotao');
 export const botao = document.getElementById('botaoCadastrar');
+const seuNomeElement = document.getElementById('seuNome');
 export let usuario;
 export let nome;
 export let email;
@@ -52,6 +53,7 @@ export function cadastrar() {
         nome = inputnome.value;
         email = inputemail.value;
         senha = inputsenha.value;
+        localStorage.setItem('nomeUsuario', nome);
     }
 }
 //# sourceMappingURL=cadastro.js.map

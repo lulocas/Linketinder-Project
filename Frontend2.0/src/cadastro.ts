@@ -5,6 +5,7 @@ const inputconfirma = document.getElementById('confirmarSenha') as HTMLInputElem
 const candidatoInput = document.getElementById('candidatoBotao') as HTMLInputElement;
 const empresaInput = document.getElementById('empresaBotao') as HTMLInputElement;
 export const botao = document.getElementById('botaoCadastrar') as HTMLButtonElement;
+const seuNomeElement = document.getElementById('seuNome');
 
 export let usuario: string;
 export let nome: string;
@@ -54,5 +55,7 @@ export function cadastrar() {
         nome = inputnome.value;
         email = inputemail.value;
         senha = inputsenha.value;
+
+        localStorage.setItem('nomeUsuario', nome);
     }
 }
