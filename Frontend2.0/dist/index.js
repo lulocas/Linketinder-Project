@@ -211,6 +211,7 @@ function salvar(nome, email, senha) {
     if (validarEdicao()) {
         alert('Salvo com sucesso');
         candidato = new CandidatoIndex(nome, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab);
+        localStorage.setItem('candidato', JSON.stringify(candidato));
         window.location.href = 'perfilC.html';
     }
 }
@@ -224,15 +225,17 @@ const pdescricao = document.getElementById("descricao");
 const pexperiencia = document.getElementById("experiencia");
 const pformacao = document.getElementById("formacao");
 function mudarDados() {
-    if (candidato) {
-        h3Nome.textContent = candidato.getNome();
-        pCpf.textContent = candidato.getCpf();
-        pidade.textContent = candidato.getIdade().toString();
-        pestado.textContent = candidato.getEstado();
-        pcep.textContent = candidato.getCep();
-        pdescricao.textContent = candidato.getDescricao();
-        pexperiencia.textContent = candidato.getExperiencia();
-        pformacao.textContent = candidato.getFormacao();
+    const candidatoData = localStorage.getItem('candidato');
+    if (candidatoData) {
+        const candidato = JSON.parse(candidatoData);
+        h3Nome.textContent = candidato.nome;
+        pCpf.textContent = candidato.cpf;
+        pidade.textContent = candidato.idade.toString();
+        pestado.textContent = candidato.estado;
+        pcep.textContent = candidato.cep;
+        pdescricao.textContent = candidato.descricao;
+        pexperiencia.textContent = candidato.experiencia;
+        pformacao.textContent = candidato.formacao;
     }
 }
 // Index parte principal
@@ -256,9 +259,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (botaoSalvar) {
             botaoSalvar.addEventListener('click', () => salvar(nomeIndex, emailIndex, senhaIndex));
         }
-        if (window.location.pathname.endsWith('/perfilC.html')) {
-            mudarDados();
-        }
+    }
+    if (window.location.pathname.endsWith('/perfilC.html')) {
+        console.log("oi");
+        mudarDados();
     }
 });
 //# sourceMappingURL=index.js.map
