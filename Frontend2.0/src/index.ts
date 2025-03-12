@@ -265,7 +265,7 @@ const pcep = document.getElementById("cep") as HTMLElement;
 const pdescricao = document.getElementById("descricao") as HTMLElement;
 const pexperiencia = document.getElementById("experiencia") as HTMLElement;
 const pformacao = document.getElementById("formacao") as HTMLElement;
-const divHabilidadesCard = document.getElementById("divHabilidadesCard") as HTMLDivElement;
+const divHabilidadesEdicao = document.getElementById("divHabilidades") as HTMLDivElement;
 
 function mudarDados(){
     const candidatoData = localStorage.getItem('candidato'); 
@@ -282,7 +282,7 @@ function mudarDados(){
         for(let i = 0; i < candidato.habilidades.length; i++){
             var divHabilidadeX = document.createElement('div');
             divHabilidadeX.classList.add("phabilidades");
-            divHabilidades.appendChild(divHabilidadeX);
+            divHabilidadesEdicao.appendChild(divHabilidadeX);
             var habilidade = document.createElement('p');
             habilidade.textContent = candidato.habilidades[i];
             habilidade.classList.add("pHa");

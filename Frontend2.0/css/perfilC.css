@@ -59,6 +59,10 @@ nav{
     margin-top: 5%;
     margin-bottom: 0%;
     gap: 20px;
+    width: 80%;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    text-align: justify;
 }
 
 #seuNome{
@@ -80,6 +84,7 @@ nav{
     font-size: 20px;
     font-weight: bold;
     color:#101942;
+    text-align: justify;
 }
 .inputEdicao{
     min-height: 30px;
@@ -104,7 +109,11 @@ nav{
     width: 100px;
     height: 40px; 
     border: none;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 #divBotoesEdicao{
     display: flex;

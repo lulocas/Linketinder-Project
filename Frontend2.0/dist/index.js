@@ -221,7 +221,7 @@ const pcep = document.getElementById("cep");
 const pdescricao = document.getElementById("descricao");
 const pexperiencia = document.getElementById("experiencia");
 const pformacao = document.getElementById("formacao");
-const divHabilidadesCard = document.getElementById("divHabilidadesCard");
+const divHabilidadesEdicao = document.getElementById("divHabilidades");
 function mudarDados() {
     const candidatoData = localStorage.getItem('candidato');
     if (candidatoData) {
@@ -237,7 +237,7 @@ function mudarDados() {
         for (let i = 0; i < candidato.habilidades.length; i++) {
             var divHabilidadeX = document.createElement('div');
             divHabilidadeX.classList.add("phabilidades");
-            divHabilidades.appendChild(divHabilidadeX);
+            divHabilidadesEdicao.appendChild(divHabilidadeX);
             var habilidade = document.createElement('p');
             habilidade.textContent = candidato.habilidades[i];
             habilidade.classList.add("pHa");
