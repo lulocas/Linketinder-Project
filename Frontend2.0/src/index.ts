@@ -117,7 +117,6 @@ class CandidatoIndex{
 
 
 // Cadastro
-const inputNomeIndex = document.getElementById('nome') as HTMLInputElement;
 const inputEmailIndex = document.getElementById('email') as HTMLInputElement;
 const inputSenhaIndex = document.getElementById('senha') as HTMLInputElement;
 const inputConfirmaIndex = document.getElementById('confirmarSenha') as HTMLInputElement;
@@ -127,15 +126,10 @@ const botaoIndex = document.getElementById('botaoCadastrar') as HTMLButtonElemen
 const seuNomeElementIndex = document.getElementById('seuNome');
 const seuNomeElement = document.getElementById('seuNome');
 let usuarioIndex: string;
-let nomeIndex: string;
 let emailIndex: string;
 let senhaIndex: string;
 
 function validar(): boolean {
-    if (inputNomeIndex.value === '') {
-        alert('Nome é obrigatório');
-        return false;
-    }
     if (inputEmailIndex.value === '') {
         alert('Email é obrigatório');
         return false;
@@ -171,15 +165,14 @@ function cadastrar() {
             alert(`Usuário ${usuarioIndex} cadastrado com sucesso!`);
             window.location.href = 'edicaoE.html';
         }
-        nomeIndex = inputNomeIndex.value;
         emailIndex = inputEmailIndex.value;
         senhaIndex = inputSenhaIndex.value;
 
-        localStorage.setItem('nomeUsuario', nomeIndex);
     }
 }
 
 // Edicao C
+const inputNomeIndex = document.getElementById('nome') as HTMLInputElement;
 const inputcpf = document.getElementById('cpf') as HTMLInputElement;
 const inputidade = document.getElementById('idade') as HTMLInputElement;
 const inputestado = document.getElementById('estado') as HTMLInputElement;
@@ -200,6 +193,10 @@ function mudarNome(nome: string) {
 }
 
 function validarEdicao(): boolean {
+    if (inputNomeIndex.value === ''){
+        alert('Nome completo é obrigatório');
+        return false;
+    }
     if (inputcpf.value === '') {
         alert('CPF é obrigatório');
         return false;
@@ -250,10 +247,10 @@ function criarHabilidade() {
     divHabili.appendChild(habilidade);
 }
 
-function salvar(nome : string, email: string, senha: string) {
+function salvar(email: string, senha: string) {
     if(validarEdicao()){
         alert('Salvo com sucesso');
-        candidato = new CandidatoIndex(nome, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab);
+        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab);
         localStorage.setItem('candidato', JSON.stringify(candidato));
         window.location.href = 'perfilC.html';
     }
@@ -268,6 +265,7 @@ const pcep = document.getElementById("cep") as HTMLElement;
 const pdescricao = document.getElementById("descricao") as HTMLElement;
 const pexperiencia = document.getElementById("experiencia") as HTMLElement;
 const pformacao = document.getElementById("formacao") as HTMLElement;
+const divHabilidadesCard = document.getElementById("divHabilidadesCard") as HTMLDivElement;
 
 function mudarDados(){
     const candidatoData = localStorage.getItem('candidato'); 
@@ -281,6 +279,15 @@ function mudarDados(){
         pdescricao.textContent = candidato.descricao;
         pexperiencia.textContent = candidato.experiencia;
         pformacao.textContent = candidato.formacao;
+        for(let i = 0; i < candidato.habilidades.length; i++){
+            var divHabilidadeX = document.createElement('div');
+            divHabilidadeX.classList.add("phabilidades");
+            divHabilidades.appendChild(divHabilidadeX);
+            var habilidade = document.createElement('p');
+            habilidade.textContent = candidato.habilidades[i];
+            habilidade.classList.add("pHa");
+            divHabilidadeX.appendChild(habilidade);
+        }
     }
 }
 
@@ -303,7 +310,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         if(botaoSalvar){
-            botaoSalvar.addEventListener('click', () => salvar(nomeIndex, emailIndex, senhaIndex));
+            botaoSalvar.addEventListener('click', () => salvar(emailIndex, senhaIndex));
         }
     }
     if(window.location.pathname.endsWith('/perfilC.html')){

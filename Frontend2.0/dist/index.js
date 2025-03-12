@@ -82,7 +82,6 @@ class CandidatoIndex {
     }
 }
 // Cadastro
-const inputNomeIndex = document.getElementById('nome');
 const inputEmailIndex = document.getElementById('email');
 const inputSenhaIndex = document.getElementById('senha');
 const inputConfirmaIndex = document.getElementById('confirmarSenha');
@@ -92,14 +91,9 @@ const botaoIndex = document.getElementById('botaoCadastrar');
 const seuNomeElementIndex = document.getElementById('seuNome');
 const seuNomeElement = document.getElementById('seuNome');
 let usuarioIndex;
-let nomeIndex;
 let emailIndex;
 let senhaIndex;
 function validar() {
-    if (inputNomeIndex.value === '') {
-        alert('Nome é obrigatório');
-        return false;
-    }
     if (inputEmailIndex.value === '') {
         alert('Email é obrigatório');
         return false;
@@ -135,13 +129,12 @@ function cadastrar() {
             alert(`Usuário ${usuarioIndex} cadastrado com sucesso!`);
             window.location.href = 'edicaoE.html';
         }
-        nomeIndex = inputNomeIndex.value;
         emailIndex = inputEmailIndex.value;
         senhaIndex = inputSenhaIndex.value;
-        localStorage.setItem('nomeUsuario', nomeIndex);
     }
 }
 // Edicao C
+const inputNomeIndex = document.getElementById('nome');
 const inputcpf = document.getElementById('cpf');
 const inputidade = document.getElementById('idade');
 const inputestado = document.getElementById('estado');
@@ -160,6 +153,10 @@ function mudarNome(nome) {
     }
 }
 function validarEdicao() {
+    if (inputNomeIndex.value === '') {
+        alert('Nome completo é obrigatório');
+        return false;
+    }
     if (inputcpf.value === '') {
         alert('CPF é obrigatório');
         return false;
@@ -207,10 +204,10 @@ function criarHabilidade() {
     habilidade.classList.add("pHab");
     divHabili.appendChild(habilidade);
 }
-function salvar(nome, email, senha) {
+function salvar(email, senha) {
     if (validarEdicao()) {
         alert('Salvo com sucesso');
-        candidato = new CandidatoIndex(nome, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab);
+        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab);
         localStorage.setItem('candidato', JSON.stringify(candidato));
         window.location.href = 'perfilC.html';
     }
@@ -224,6 +221,7 @@ const pcep = document.getElementById("cep");
 const pdescricao = document.getElementById("descricao");
 const pexperiencia = document.getElementById("experiencia");
 const pformacao = document.getElementById("formacao");
+const divHabilidadesCard = document.getElementById("divHabilidadesCard");
 function mudarDados() {
     const candidatoData = localStorage.getItem('candidato');
     if (candidatoData) {
@@ -236,6 +234,15 @@ function mudarDados() {
         pdescricao.textContent = candidato.descricao;
         pexperiencia.textContent = candidato.experiencia;
         pformacao.textContent = candidato.formacao;
+        for (let i = 0; i < candidato.habilidades.length; i++) {
+            var divHabilidadeX = document.createElement('div');
+            divHabilidadeX.classList.add("phabilidades");
+            divHabilidades.appendChild(divHabilidadeX);
+            var habilidade = document.createElement('p');
+            habilidade.textContent = candidato.habilidades[i];
+            habilidade.classList.add("pHa");
+            divHabilidadeX.appendChild(habilidade);
+        }
     }
 }
 // Index parte principal
@@ -257,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         if (botaoSalvar) {
-            botaoSalvar.addEventListener('click', () => salvar(nomeIndex, emailIndex, senhaIndex));
+            botaoSalvar.addEventListener('click', () => salvar(emailIndex, senhaIndex));
         }
     }
     if (window.location.pathname.endsWith('/perfilC.html')) {

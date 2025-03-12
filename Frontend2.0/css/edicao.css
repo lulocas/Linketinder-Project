@@ -60,6 +60,10 @@ nav{
     margin-top: 5%;
     gap: 20px;
 }
+#nomeCompleto{
+    font-size: 20px;
+    font-weight: bold;
+}
 #inputsPessoais{
     display: flex;
     flex-direction: row;
