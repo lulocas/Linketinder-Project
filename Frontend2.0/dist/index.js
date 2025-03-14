@@ -1,7 +1,7 @@
 "use strict";
 // Classe candidato
 class CandidatoIndex {
-    constructor(nome, email, senha, cpf, idade, estado, cep, descricao, formacao, experiencia, habilidades) {
+    constructor(nome, email, senha, cpf, idade, estado, cep, descricao, formacao, experiencia, habilidades, titulo) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -13,6 +13,10 @@ class CandidatoIndex {
         this.formacao = formacao;
         this.experiencia = experiencia;
         this.habilidades = habilidades;
+        this.titulo = titulo;
+    }
+    getTitulo() {
+        return this.titulo;
     }
     getNome() {
         return this.nome;
@@ -46,6 +50,9 @@ class CandidatoIndex {
     }
     getHabilidades() {
         return this.habilidades;
+    }
+    setTitulo(titulo) {
+        this.titulo = titulo;
     }
     setNome(nome) {
         this.nome = nome;
@@ -207,7 +214,7 @@ function criarHabilidade() {
 function salvar(email, senha) {
     if (validarEdicao()) {
         alert('Salvo com sucesso');
-        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab);
+        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab, "");
         localStorage.setItem('candidato', JSON.stringify(candidato));
         window.location.href = 'perfilC.html';
     }
@@ -222,6 +229,20 @@ const pdescricao = document.getElementById("descricao");
 const pexperiencia = document.getElementById("experiencia");
 const pformacao = document.getElementById("formacao");
 const divHabilidadesEdicao = document.getElementById("divHabilidades");
+const inputTitulo = document.getElementById("interesses");
+const tituloCard = document.getElementById("interessesP");
+const formacaoCard = document.getElementById("formacaoP");
+const divHabilCard = document.getElementById("divHabilidadesCard");
+const botaoEditarC = document.getElementById('botaoEditar');
+function pegarTitulo() {
+    const candidatoData = localStorage.getItem('candidato');
+    if (inputTitulo.value !== '') {
+        const candidato = candidatoData ? JSON.parse(candidatoData) : null;
+        tituloCard.textContent = inputTitulo.value;
+        candidato.setTitulo(inputTitulo.value);
+        inputTitulo.value = '';
+    }
+}
 function mudarDados() {
     const candidatoData = localStorage.getItem('candidato');
     if (candidatoData) {
@@ -234,6 +255,8 @@ function mudarDados() {
         pdescricao.textContent = candidato.descricao;
         pexperiencia.textContent = candidato.experiencia;
         pformacao.textContent = candidato.formacao;
+        formacaoCard.textContent = candidato.formacao;
+        tituloCard.textContent = candidato.titulo;
         for (let i = 0; i < candidato.habilidades.length; i++) {
             var divHabilidadeX = document.createElement('div');
             divHabilidadeX.classList.add("phabilidades");
@@ -243,10 +266,34 @@ function mudarDados() {
             habilidade.classList.add("pHa");
             divHabilidadeX.appendChild(habilidade);
         }
+        for (let i = 0; i < candidato.habilidades.length; i++) {
+            var divHabilidadeX = document.createElement('div');
+            divHabilidadeX.classList.add("phabilidades");
+            divHabilCard.appendChild(divHabilidadeX);
+            var habilidade = document.createElement('p');
+            habilidade.textContent = candidato.habilidades[i];
+            habilidade.classList.add("pHa");
+            divHabilidadeX.appendChild(habilidade);
+        }
     }
+}
+function editarC() {
+    window.location.href = 'edicaoC.html';
 }
 // Index parte principal
 document.addEventListener('DOMContentLoaded', () => {
+    const botaoVaga = document.getElementById('botaoVagas');
+    const botaoPerfilC = document.getElementById('botaoPerfilC');
+    if (botaoVaga) {
+        botaoVaga.addEventListener('click', () => {
+            window.location.href = 'opcoes.html';
+        });
+    }
+    if (botaoPerfilC) {
+        botaoPerfilC.addEventListener('click', () => {
+            window.location.href = 'perfilC.html';
+        });
+    }
     if (botaoIndex) {
         botaoIndex.addEventListener('click', cadastrar);
     }
@@ -270,6 +317,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.endsWith('/perfilC.html')) {
         console.log("oi");
         mudarDados();
+        if (inputTitulo) {
+            inputTitulo.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    pegarTitulo();
+                }
+            });
+        }
+        if (botaoEditarC) {
+            botaoEditarC.addEventListener('click', editarC);
+        }
     }
 });
 //# sourceMappingURL=index.js.map

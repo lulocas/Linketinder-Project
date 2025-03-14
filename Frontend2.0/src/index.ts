@@ -11,8 +11,9 @@ class CandidatoIndex{
     private formacao: string;
     private experiencia: string;
     private habilidades: string[];
+    private titulo: string;
 
-    constructor(nome: string, email: string, senha: string, cpf: string, idade: number, estado: string, cep: string, descricao: string, formacao: string, experiencia: string, habilidades: string[]){
+    constructor(nome: string, email: string, senha: string, cpf: string, idade: number, estado: string, cep: string, descricao: string, formacao: string, experiencia: string, habilidades: string[], titulo: string){
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -24,6 +25,11 @@ class CandidatoIndex{
         this.formacao = formacao;
         this.experiencia = experiencia;
         this.habilidades = habilidades;
+        this.titulo = titulo;
+    }
+
+    getTitulo(): string{
+        return this.titulo;
     }
 
     getNome(): string{
@@ -68,6 +74,10 @@ class CandidatoIndex{
 
     getHabilidades(): string[]{
         return this.habilidades;
+    }
+
+    setTitulo(titulo: string): void{
+        this.titulo = titulo;
     }
 
     setNome(nome: string): void{
@@ -250,7 +260,7 @@ function criarHabilidade() {
 function salvar(email: string, senha: string) {
     if(validarEdicao()){
         alert('Salvo com sucesso');
-        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab);
+        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab, "");
         localStorage.setItem('candidato', JSON.stringify(candidato));
         window.location.href = 'perfilC.html';
     }
@@ -266,6 +276,21 @@ const pdescricao = document.getElementById("descricao") as HTMLElement;
 const pexperiencia = document.getElementById("experiencia") as HTMLElement;
 const pformacao = document.getElementById("formacao") as HTMLElement;
 const divHabilidadesEdicao = document.getElementById("divHabilidades") as HTMLDivElement;
+const inputTitulo = document.getElementById("interesses") as HTMLInputElement;
+const tituloCard = document.getElementById("interessesP") as HTMLElement;
+const formacaoCard = document.getElementById("formacaoP") as HTMLElement;
+const divHabilCard = document.getElementById("divHabilidadesCard") as HTMLDivElement;
+const botaoEditarC = document.getElementById('botaoEditar') as HTMLButtonElement;
+
+function pegarTitulo(){
+    const candidatoData = localStorage.getItem('candidato');
+    if(inputTitulo.value !== ''){
+        const candidato = candidatoData ? JSON.parse(candidatoData) : null;
+        tituloCard.textContent = inputTitulo.value;
+        candidato.setTitulo(inputTitulo.value);
+        inputTitulo.value = '';
+    }
+}
 
 function mudarDados(){
     const candidatoData = localStorage.getItem('candidato'); 
@@ -279,6 +304,8 @@ function mudarDados(){
         pdescricao.textContent = candidato.descricao;
         pexperiencia.textContent = candidato.experiencia;
         pformacao.textContent = candidato.formacao;
+        formacaoCard.textContent = candidato.formacao;
+        tituloCard.textContent = candidato.titulo;
         for(let i = 0; i < candidato.habilidades.length; i++){
             var divHabilidadeX = document.createElement('div');
             divHabilidadeX.classList.add("phabilidades");
@@ -288,18 +315,50 @@ function mudarDados(){
             habilidade.classList.add("pHa");
             divHabilidadeX.appendChild(habilidade);
         }
+        for(let i = 0; i < candidato.habilidades.length; i++){
+            var divHabilidadeX = document.createElement('div');
+            divHabilidadeX.classList.add("phabilidades");
+            divHabilCard.appendChild(divHabilidadeX);
+            var habilidade = document.createElement('p');
+            habilidade.textContent = candidato.habilidades[i];
+            habilidade.classList.add("pHa");
+            divHabilidadeX.appendChild(habilidade);
+        }
     }
 }
 
+function editarC(){
+    window.location.href = 'edicaoC.html';
+}
+
+
 // Index parte principal
 document.addEventListener('DOMContentLoaded', () => {
+    const botaoVaga = document.getElementById('botaoVagas') as HTMLButtonElement;
+    const botaoPerfilC = document.getElementById('botaoPerfilC') as HTMLButtonElement;
+
+    if (botaoVaga) {
+        botaoVaga.addEventListener('click', () => {
+            window.location.href = 'opcoes.html';
+        });
+    }
+
+    if (botaoPerfilC) {
+        botaoPerfilC.addEventListener('click', () => {
+            window.location.href = 'perfilC.html';
+        });
+    }
+
     if (botaoIndex) {
         botaoIndex.addEventListener('click', cadastrar);
     }
+
     const nomeUsuario = localStorage.getItem('nomeUsuario');
+
     if (nomeUsuario) {
         mudarNome(nomeUsuario);
     }
+
     if(window.location.pathname.endsWith('/edicaoC.html')) {
         console.log("oi");
         if (inputhabilidades) {
@@ -313,8 +372,19 @@ document.addEventListener('DOMContentLoaded', () => {
             botaoSalvar.addEventListener('click', () => salvar(emailIndex, senhaIndex));
         }
     }
+
     if(window.location.pathname.endsWith('/perfilC.html')){
         console.log("oi");
         mudarDados();
+        if(inputTitulo){
+            inputTitulo.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    pegarTitulo();
+                }
+            });
+        }  
+        if(botaoEditarC){
+            botaoEditarC.addEventListener('click', editarC);
+        } 
     }
 });
