@@ -21,7 +21,8 @@
             <div id="quadradoEdicao">
                 <div id="divEdicao">
                     <div id="divFormularioEdicao">
-                        <h3 id="seuNome">Seu nome</h3>
+                        <label id="nomeCompleto" for="nome">Nome completo:</label>
+                        <input type="text" id="nome" name="nome" required class="inputEdicao" placeholder="Nome completo">
                         <div id="inputsPessoais">
                             <label for="cnpj">CNPJ:</label>
                             <input type="text" id="cnpj" name="cnpj" required class="inputEdicao" placeholder="CNPJ">
@@ -35,12 +36,24 @@
                         <label for="sobre">Sobre a empresa:</label>
                         <textarea id="sobre" name="sobre" required class="inputEdicao" placeholder="Sobre a empresa"></textarea>
                     </div>
-                    <div id="divBotoesEdicao">
-                        <button id="botaoSalvar">Salvar</button>
+                    <div class="vagas">
+                        <h2 id="tituloVagas">Vaga: </h2>
+                        <div id="vaga1" class="vaga">
+                            <label for="tituloVaga">Título da vaga:</label>
+                            <input type="text" id="tituloVaga" name="tituloVaga" required class="inputEdicaoV" placeholder="Título da vaga">
+                            <label for="descricaoVaga">Descrição:</label>
+                            <textarea id="descricaoVaga" name="descricaoVaga" required class="inputEdicaoV" placeholder="Descrição"></textarea>
+                            <label for="requisitos">Requisitos:</label>
+                            <textarea id="requisitos" name="requisitos" required class="inputEdicaoV" placeholder="Requisitos"></textarea>
+                            <label for="salario">Salário:</label>
+                            <input type="text" id="salario" name="salario" required class="inputEdicaoV" placeholder="Salário">
+                        </div>
                     </div>
-                </div>
-                
+                    <div id="divBotoesEdicao">
+                        <button id="botaoSalvarE">Salvar</button>
+                    </div>
             </div>
         </main>
+        <script src="../dist/index.js" type="module"></script>
     </body>
 </html>

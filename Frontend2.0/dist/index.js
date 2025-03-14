@@ -280,10 +280,210 @@ function mudarDados() {
 function editarC() {
     window.location.href = 'edicaoC.html';
 }
+// classe empresa
+class Empresa {
+    constructor(nome, email, senha, cnpj, pais, estado, cep, descricao, vagas) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.cnpj = cnpj;
+        this.pais = pais;
+        this.estado = estado;
+        this.cep = cep;
+        this.descricao = descricao;
+        this.vagas = vagas;
+    }
+    getVagas() {
+        return this.vagas;
+    }
+    getNome() {
+        return this.nome;
+    }
+    getEmail() {
+        return this.email;
+    }
+    getSenha() {
+        return this.senha;
+    }
+    getCnpj() {
+        return this.cnpj;
+    }
+    getPais() {
+        return this.pais;
+    }
+    getEstado() {
+        return this.estado;
+    }
+    getCep() {
+        return this.cep;
+    }
+    getDescricao() {
+        return this.descricao;
+    }
+    setVagas(vagas) {
+        this.vagas = vagas;
+    }
+    setNome(nome) {
+        this.nome = nome;
+    }
+    setEmail(email) {
+        this.email = email;
+    }
+    setSenha(senha) {
+        this.senha = senha;
+    }
+    setCnpj(cnpj) {
+        this.cnpj = cnpj;
+    }
+    setPais(pais) {
+        this.pais = pais;
+    }
+    setEstado(estado) {
+        this.estado = estado;
+    }
+    setCep(cep) {
+        this.cep = cep;
+    }
+    setDescricao(descricao) {
+        this.descricao = descricao;
+    }
+}
+// Edicao E
+const inputNomeEmpresa = document.getElementById('nome');
+const inputCnpj = document.getElementById('cnpj');
+const inputPais = document.getElementById('pais');
+const inputEstado = document.getElementById('estado');
+const inputCep = document.getElementById('cep');
+const inputDescricao = document.getElementById('sobre');
+const botaoSalvarE = document.getElementById('botaoSalvarE');
+const tituloVaga = document.getElementById('tituloVaga');
+const descricaoVaga = document.getElementById('descricaoVaga');
+const habilidadesVaga = document.getElementById('requisitos');
+const salarioVaga = document.getElementById('salario');
+let empresa;
+function validarE() {
+    if (inputNomeEmpresa.value === '') {
+        alert('Nome da empresa é obrigatório');
+        return false;
+    }
+    if (inputCnpj.value === '') {
+        alert('CNPJ é obrigatório');
+        return false;
+    }
+    if (inputPais.value === '') {
+        alert('País é obrigatório');
+        return false;
+    }
+    if (inputEstado.value === '') {
+        alert('Estado é obrigatório');
+        return false;
+    }
+    if (inputCep.value === '') {
+        alert('CEP é obrigatório');
+        return false;
+    }
+    if (inputDescricao.value === '') {
+        alert('Descrição é obrigatório');
+        return false;
+    }
+    if (tituloVaga.value === '') {
+        alert('Título da vaga é obrigatório');
+        return false;
+    }
+    if (descricaoVaga.value === '') {
+        alert('Descrição da vaga é obrigatório');
+        return false;
+    }
+    if (habilidadesVaga.value === '') {
+        alert('Habilidades da vaga é obrigatório');
+        return false;
+    }
+    if (salarioVaga.value === '') {
+        alert('Salário da vaga é obrigatório');
+        return false;
+    }
+    return true;
+}
+function salvarE(email, senha) {
+    if (validarE()) {
+        alert('Salvo com sucesso');
+        const vaga = new Vaga(tituloVaga.value, descricaoVaga.value, habilidadesVaga.value, parseInt(salarioVaga.value));
+        const empresa = new Empresa(inputNomeEmpresa.value, emailIndex, senhaIndex, parseInt(inputCnpj.value), inputPais.value, inputEstado.value, inputCep.value, inputDescricao.value, vaga);
+        localStorage.setItem('vaga', JSON.stringify(vaga));
+        localStorage.setItem('empresa', JSON.stringify(empresa));
+        window.location.href = 'perfilE.html';
+    }
+}
+// perfil E
+const h3NomeE = document.getElementById("seuNome");
+const pCnpj = document.getElementById("cnpj");
+const pPais = document.getElementById("pais");
+const pEstado = document.getElementById("estado");
+const pCep = document.getElementById("cep");
+const pDescricao = document.getElementById("descricao");
+const botaoEditarE = document.getElementById('botaoEditarE');
+const tituloVagaCard = document.getElementById('tituloVaga');
+const descricaoVagaCard = document.getElementById('descricaope');
+const habilidadesVagaCard = document.getElementById('requisisitop');
+const salarioVagaCard = document.getElementById('salariop');
+class Vaga {
+    constructor(titulo, descricao, habilidades, salario) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.habilidades = habilidades;
+        this.salario = salario;
+    }
+    getTitulo() {
+        return this.titulo;
+    }
+    getDescricao() {
+        return this.descricao;
+    }
+    getHabilidades() {
+        return this.habilidades;
+    }
+    getSalario() {
+        return this.salario;
+    }
+    setTitulo(titulo) {
+        this.titulo = titulo;
+    }
+    setDescricao(descricao) {
+        this.descricao = descricao;
+    }
+    setHabilidades(habilidades) {
+        this.habilidades = habilidades;
+    }
+    setSalario(salario) {
+        this.salario = salario;
+    }
+}
+function mudarDadosE() {
+    const empresaData = localStorage.getItem('empresa');
+    const vagaData = localStorage.getItem('vaga');
+    if (vagaData) {
+        const vaga = JSON.parse(vagaData);
+        tituloVagaCard.textContent = vaga.titulo;
+        descricaoVagaCard.textContent = vaga.descricao;
+        habilidadesVagaCard.textContent = vaga.habilidades.toString();
+        salarioVagaCard.textContent = vaga.salario.toString();
+    }
+    if (empresaData) {
+        const empresa = JSON.parse(empresaData);
+        h3NomeE.textContent = empresa.nome;
+        pCnpj.textContent = empresa.cnpj.toString();
+        pPais.textContent = empresa.pais;
+        pEstado.textContent = empresa.estado;
+        pCep.textContent = empresa.cep;
+        pDescricao.textContent = empresa.descricao;
+    }
+}
 // Index parte principal
 document.addEventListener('DOMContentLoaded', () => {
     const botaoVaga = document.getElementById('botaoVagas');
     const botaoPerfilC = document.getElementById('botaoPerfilC');
+    const botaoCandidatos = document.getElementById('botaCandidatos');
+    const botaoPerfilE = document.getElementById('botaoPerfilE');
     if (botaoVaga) {
         botaoVaga.addEventListener('click', () => {
             window.location.href = 'opcoes.html';
@@ -294,12 +494,35 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'perfilC.html';
         });
     }
+    if (botaoCandidatos) {
+        botaoCandidatos.addEventListener('click', () => {
+            window.location.href = 'opcoesC.html';
+        });
+    }
+    if (botaoPerfilE) {
+        botaoPerfilE.addEventListener('click', () => {
+            window.location.href = 'perfilE.html';
+        });
+    }
     if (botaoIndex) {
         botaoIndex.addEventListener('click', cadastrar);
     }
     const nomeUsuario = localStorage.getItem('nomeUsuario');
     if (nomeUsuario) {
         mudarNome(nomeUsuario);
+    }
+    if (window.location.pathname.endsWith('/edicaoE.html')) {
+        if (botaoSalvarE) {
+            botaoSalvarE.addEventListener('click', () => salvarE(emailIndex, senhaIndex));
+        }
+    }
+    if (window.location.pathname.endsWith('/perfilE.html')) {
+        mudarDadosE();
+        if (botaoEditarE) {
+            botaoEditarE.addEventListener('click', () => {
+                window.location.href = 'edicaoE.html';
+            });
+        }
     }
     if (window.location.pathname.endsWith('/edicaoC.html')) {
         console.log("oi");

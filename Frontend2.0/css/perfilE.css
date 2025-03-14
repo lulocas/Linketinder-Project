@@ -59,6 +59,9 @@ nav{
     margin-top: 5%;
     margin-bottom: 2%;
     gap: 20px;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    text-align: justify;
 }
 
 #seuNome{
@@ -89,7 +92,7 @@ nav{
     margin-right: 10%;
     margin-bottom: 0%;
 }
-#botaoEditar{
+#botaoEditarE{
     width: 20%;
     height: 30px;
     border-radius: 25px;
@@ -99,7 +102,7 @@ nav{
     background-color: #3f5efb;
     color:#fefeff;
 }
-#botaoEditar:hover{
+#botaoEditarE:hover{
     background-color: rgb(63, 94, 251, 0.8);
     color:#fefeff;
 }
@@ -208,4 +211,9 @@ nav{
     font-weight: bold;
     color: #101942;
     padding-bottom: 2%;
+}
+#vaga1{
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    text-align: justify;
 }

@@ -14,7 +14,7 @@
         <main>
             <div id="barranav">
                 <nav>
-                    <button id="botaoPerfil" class="botoesNav">Perfil</button>
+                    <button id="botaoPerfilE" class="botoesNav">Perfil</button>
                     <button id="botaCandidatos" class="botoesNav">Candidatos</button>
                 </nav>
             </div>
@@ -42,15 +42,16 @@
                         <button id="botaoEditarE">Editar</button>
                     </div>
                     <div class="vagas">
-                        <h2 id="tituloVagas">Vagas</h2>
+                        <h2 id="tituloVagas">Vaga</h2>
                         <div id="vaga1" class="vaga">
-                            <h3 class="tituloVaga">1.Desenvolvedor Full Stack</h3>
+                            <p class="identificacao">Título:</p>
+                            <h3 id="tituloVaga">1.Desenvolvedor Full Stack</h3>
                             <p class="identificacao">Descrição:</p>
-                            <p class="pinformacao">Desenvolvimento de aplicações web e mobile</p>
+                            <p class="pinformacao" id="descricaope">Desenvolvimento de aplicações web e mobile</p>
                             <p class="identificacao">Requisitos:</p>
-                            <p class="pinformacao">React, Node.js, MongoDB</p>
+                            <p class="pinformacao" id="requisisitop">React, Node.js, MongoDB</p>
                             <p class="identificacao">Salário:</p>
-                            <p class="pinformacao">R$ 5.000,00</p>
+                            <p class="pinformacao" id="salariop">R$ 5.000,00</p>
                         </div>
                     </div>
                 </div>
@@ -73,14 +74,10 @@
                                 </div>
                             </div>
                         </section>
-                        <div id="cardEdt">
-                            <div id="quadradoCard">
-                                <button id="criarVaga">Criar vaga</button>
-                            </div>
-                        </div>
                 </div>
             </div>
         </main>
+        <script src="../dist/index.js" type="module"></script>
     </body>
 
 </html>
