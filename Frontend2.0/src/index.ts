@@ -12,8 +12,10 @@ class CandidatoIndex{
     private experiencia: string;
     private habilidades: string[];
     private titulo: string;
+    private telefone: string;
+    private linkedin: string;
 
-    constructor(nome: string, email: string, senha: string, cpf: string, idade: number, estado: string, cep: string, descricao: string, formacao: string, experiencia: string, habilidades: string[], titulo: string){
+    constructor(nome: string, email: string, senha: string, cpf: string, idade: number, estado: string, cep: string, descricao: string, formacao: string, experiencia: string, habilidades: string[], titulo: string, telefone: string, linkedin: string){
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -26,8 +28,16 @@ class CandidatoIndex{
         this.experiencia = experiencia;
         this.habilidades = habilidades;
         this.titulo = titulo;
+        this.telefone = telefone;
+        this.linkedin = linkedin;
     }
 
+    getLinkedin(): string{
+        return this.linkedin;
+    }
+    getTelefone(): string{  
+        return this.telefone;
+    }
     getTitulo(): string{
         return this.titulo;
     }
@@ -76,6 +86,12 @@ class CandidatoIndex{
         return this.habilidades;
     }
 
+    setLinkedin(linkedin: string): void{
+        this.linkedin = linkedin;
+    }
+    setTelefone(telefone: string): void{
+        this.telefone = telefone;
+    }
     setTitulo(titulo: string): void{
         this.titulo = titulo;
     }
@@ -140,10 +156,15 @@ const seuNomeElement = document.getElementById('seuNome');
 let usuarioIndex: string;
 let emailIndex: string;
 let senhaIndex: string;
+const validarEmail = /\S+@\w+\.\w{2,6}(\.\w{2})?/g;
 
 function validar(): boolean {
     if (inputEmailIndex.value === '') {
         alert('Email é obrigatório');
+        return false;
+    }
+    if(!validarEmail.test(inputEmailIndex.value)){
+        alert('Email inválido');
         return false;
     }
     if (inputSenhaIndex.value === '') {
@@ -184,6 +205,8 @@ function cadastrar() {
 }
 
 // Edicao C
+const inputLinkedin = document.getElementById('linkedin') as HTMLInputElement;
+const inputTelefone = document.getElementById('telefone') as HTMLInputElement;
 const inputNomeIndex = document.getElementById('nome') as HTMLInputElement;
 const inputcpf = document.getElementById('cpf') as HTMLInputElement;
 const inputidade = document.getElementById('idade') as HTMLInputElement;
@@ -197,6 +220,10 @@ const botaoSalvar = document.getElementById('botaoSalvar') as HTMLButtonElement;
 const divHabilidades = document.getElementById('divHab') as HTMLDivElement;
 let candidato: CandidatoIndex | undefined;
 let listaHab: string[] = [];
+const validarCpf = /\d{3}\.\d{3}\.\d{3}-\d{2}/g;
+const validarCep = /\d{5}-\d{3}/g;
+const validarTelefone = /\(\d{2}\)\s?\d{4,5}-\d{4}/g;
+const validarLinkedin = /(https:\/\/)?www\.linkedin\.com\/in\/\w+/g;
 
 function mudarNome(nome: string) {
     if (seuNomeElement) {
@@ -205,6 +232,22 @@ function mudarNome(nome: string) {
 }
 
 function validarEdicao(): boolean {
+    if(inputLinkedin.value === ''){
+        alert('Linkedin é obrigatório');
+        return false;
+    }
+    if(!validarLinkedin.test(inputLinkedin.value)){
+        alert('Linkedin inválido');
+        return false
+    }
+    if (inputTelefone.value === '') {
+        alert('Telefone é obrigatório');
+        return false;
+    }
+    if(!validarTelefone.test(inputTelefone.value)){
+        alert('Telefone inválido');
+        return false    
+    }
     if (inputNomeIndex.value === ''){
         alert('Nome completo é obrigatório');
         return false;
@@ -212,6 +255,10 @@ function validarEdicao(): boolean {
     if (inputcpf.value === '') {
         alert('CPF é obrigatório');
         return false;
+    }
+    if(!validarCpf.test(inputcpf.value)){
+        alert('CPF inválido');
+        return false    
     }
     if (inputidade.value === '') {
         alert('Idade é obrigatório');
@@ -224,6 +271,10 @@ function validarEdicao(): boolean {
     if (inputcep.value === '') {
         alert('CEP é obrigatório');
         return false;
+    }
+    if(!validarCep.test(inputcep.value)){
+        alert('CEP inválido');
+        return false    
     }
     if (inputdescricao.value === '') {
         alert('Descrição é obrigatório');
@@ -262,13 +313,15 @@ function criarHabilidade() {
 function salvar(email: string, senha: string) {
     if(validarEdicao()){
         alert('Salvo com sucesso');
-        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab, "");
+        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab, "", inputTelefone.value, inputLinkedin.value);
         localStorage.setItem('candidato', JSON.stringify(candidato));
         window.location.href = 'perfilC.html';
     }
 }
 
 // Perfil c
+const pLinkedin = document.getElementById("linkedin") as HTMLElement;
+const pTelefone = document.getElementById("telefone") as HTMLElement;
 const h3Nome = document.getElementById("seuNome") as HTMLElement;
 const pCpf = document.getElementById("cpf") as HTMLElement;
 const pidade = document.getElementById("idade") as HTMLElement;
@@ -303,6 +356,8 @@ function mudarDados(){
         pidade.textContent = candidato.idade.toString();
         pestado.textContent = candidato.estado;
         pcep.textContent = candidato.cep;
+        pTelefone.textContent = candidato.telefone;
+        pLinkedin.textContent = candidato.linkedin;
         pdescricao.textContent = candidato.descricao;
         pexperiencia.textContent = candidato.experiencia;
         pformacao.textContent = candidato.formacao;
@@ -338,14 +393,14 @@ class Empresa{
     private nome: string;
     private email: string;
     private senha: string;
-    private cnpj: number;
+    private cnpj: string;
     private pais: string;
     private estado: string;
     private cep: string;
     private descricao: string;
     private vagas: Vaga;
 
-    constructor(nome: string, email: string, senha: string, cnpj: number, pais: string, estado: string, cep: string, descricao: string, vagas: Vaga){
+    constructor(nome: string, email: string, senha: string, cnpj: string, pais: string, estado: string, cep: string, descricao: string, vagas: Vaga){
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -369,7 +424,7 @@ class Empresa{
     getSenha(): string{
         return this.senha;
     }
-    getCnpj(): number{
+    getCnpj(): string{
         return this.cnpj;
     }
     getPais(): string{
@@ -396,7 +451,7 @@ class Empresa{
     setSenha(senha: string): void{
         this.senha = senha;
     }
-    setCnpj(cnpj: number): void{
+    setCnpj(cnpj: string): void{
         this.cnpj = cnpj;
     }
     setPais(pais: string): void{
@@ -426,6 +481,7 @@ const descricaoVaga = document.getElementById('descricaoVaga') as HTMLInputEleme
 const habilidadesVaga = document.getElementById('requisitos') as HTMLInputElement;
 const salarioVaga = document.getElementById('salario') as HTMLInputElement;
 let empresa: Empresa | undefined;
+const validarCnpj = /\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}/g;
 
 function validarE(){
     if (inputNomeEmpresa.value === '') {
@@ -435,6 +491,10 @@ function validarE(){
     if (inputCnpj.value === '') {
         alert('CNPJ é obrigatório');
         return false;
+    }
+    if(!validarCnpj.test(inputCnpj.value)){
+        alert('CNPJ inválido');
+        return false    
     }
     if (inputPais.value === '') {
         alert('País é obrigatório');
@@ -447,6 +507,10 @@ function validarE(){
     if (inputCep.value === '') {
         alert('CEP é obrigatório');
         return false;
+    }
+    if(!validarCep.test(inputcep.value)){
+        alert('CEP inválido');
+        return false    
     }
     if (inputDescricao.value === '') {
         alert('Descrição é obrigatório');
@@ -475,7 +539,7 @@ function salvarE(email: string, senha: string){
     if(validarE()){
         alert('Salvo com sucesso');
         const vaga = new Vaga(tituloVaga.value, descricaoVaga.value, habilidadesVaga.value, parseInt(salarioVaga.value));
-        const empresa = new Empresa(inputNomeEmpresa.value, emailIndex, senhaIndex, parseInt(inputCnpj.value), inputPais.value, inputEstado.value, inputCep.value, inputDescricao.value, vaga);
+        const empresa = new Empresa(inputNomeEmpresa.value, emailIndex, senhaIndex, inputCnpj.value, inputPais.value, inputEstado.value, inputCep.value, inputDescricao.value, vaga);
         localStorage.setItem('vaga', JSON.stringify(vaga));
         localStorage.setItem('empresa', JSON.stringify(empresa));
         window.location.href = 'perfilE.html';
@@ -547,7 +611,7 @@ function mudarDadosE(){
     if (empresaData) {
         const empresa = JSON.parse(empresaData);
         h3NomeE.textContent = empresa.nome;
-        pCnpj.textContent = empresa.cnpj.toString();
+        pCnpj.textContent = empresa.cnpj;
         pPais.textContent = empresa.pais;
         pEstado.textContent = empresa.estado;
         pCep.textContent = empresa.cep;

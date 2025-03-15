@@ -1,7 +1,7 @@
 "use strict";
 // Classe candidato
 class CandidatoIndex {
-    constructor(nome, email, senha, cpf, idade, estado, cep, descricao, formacao, experiencia, habilidades, titulo) {
+    constructor(nome, email, senha, cpf, idade, estado, cep, descricao, formacao, experiencia, habilidades, titulo, telefone, linkedin) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -14,6 +14,14 @@ class CandidatoIndex {
         this.experiencia = experiencia;
         this.habilidades = habilidades;
         this.titulo = titulo;
+        this.telefone = telefone;
+        this.linkedin = linkedin;
+    }
+    getLinkedin() {
+        return this.linkedin;
+    }
+    getTelefone() {
+        return this.telefone;
     }
     getTitulo() {
         return this.titulo;
@@ -50,6 +58,12 @@ class CandidatoIndex {
     }
     getHabilidades() {
         return this.habilidades;
+    }
+    setLinkedin(linkedin) {
+        this.linkedin = linkedin;
+    }
+    setTelefone(telefone) {
+        this.telefone = telefone;
     }
     setTitulo(titulo) {
         this.titulo = titulo;
@@ -100,9 +114,14 @@ const seuNomeElement = document.getElementById('seuNome');
 let usuarioIndex;
 let emailIndex;
 let senhaIndex;
+const validarEmail = /\S+@\w+\.\w{2,6}(\.\w{2})?/g;
 function validar() {
     if (inputEmailIndex.value === '') {
         alert('Email é obrigatório');
+        return false;
+    }
+    if (!validarEmail.test(inputEmailIndex.value)) {
+        alert('Email inválido');
         return false;
     }
     if (inputSenhaIndex.value === '') {
@@ -141,6 +160,8 @@ function cadastrar() {
     }
 }
 // Edicao C
+const inputLinkedin = document.getElementById('linkedin');
+const inputTelefone = document.getElementById('telefone');
 const inputNomeIndex = document.getElementById('nome');
 const inputcpf = document.getElementById('cpf');
 const inputidade = document.getElementById('idade');
@@ -154,18 +175,42 @@ const botaoSalvar = document.getElementById('botaoSalvar');
 const divHabilidades = document.getElementById('divHab');
 let candidato;
 let listaHab = [];
+const validarCpf = /\d{3}\.\d{3}\.\d{3}-\d{2}/g;
+const validarCep = /\d{5}-\d{3}/g;
+const validarTelefone = /\(\d{2}\)\s?\d{4,5}-\d{4}/g;
+const validarLinkedin = /(https:\/\/)?www\.linkedin\.com\/in\/\w+/g;
 function mudarNome(nome) {
     if (seuNomeElement) {
         seuNomeElement.textContent = nome;
     }
 }
 function validarEdicao() {
+    if (inputLinkedin.value === '') {
+        alert('Linkedin é obrigatório');
+        return false;
+    }
+    if (!validarLinkedin.test(inputLinkedin.value)) {
+        alert('Linkedin inválido');
+        return false;
+    }
+    if (inputTelefone.value === '') {
+        alert('Telefone é obrigatório');
+        return false;
+    }
+    if (!validarTelefone.test(inputTelefone.value)) {
+        alert('Telefone inválido');
+        return false;
+    }
     if (inputNomeIndex.value === '') {
         alert('Nome completo é obrigatório');
         return false;
     }
     if (inputcpf.value === '') {
         alert('CPF é obrigatório');
+        return false;
+    }
+    if (!validarCpf.test(inputcpf.value)) {
+        alert('CPF inválido');
         return false;
     }
     if (inputidade.value === '') {
@@ -178,6 +223,10 @@ function validarEdicao() {
     }
     if (inputcep.value === '') {
         alert('CEP é obrigatório');
+        return false;
+    }
+    if (!validarCep.test(inputcep.value)) {
+        alert('CEP inválido');
         return false;
     }
     if (inputdescricao.value === '') {
@@ -214,12 +263,14 @@ function criarHabilidade() {
 function salvar(email, senha) {
     if (validarEdicao()) {
         alert('Salvo com sucesso');
-        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab, "");
+        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab, "", inputTelefone.value, inputLinkedin.value);
         localStorage.setItem('candidato', JSON.stringify(candidato));
         window.location.href = 'perfilC.html';
     }
 }
 // Perfil c
+const pLinkedin = document.getElementById("linkedin");
+const pTelefone = document.getElementById("telefone");
 const h3Nome = document.getElementById("seuNome");
 const pCpf = document.getElementById("cpf");
 const pidade = document.getElementById("idade");
@@ -252,6 +303,8 @@ function mudarDados() {
         pidade.textContent = candidato.idade.toString();
         pestado.textContent = candidato.estado;
         pcep.textContent = candidato.cep;
+        pTelefone.textContent = candidato.telefone;
+        pLinkedin.textContent = candidato.linkedin;
         pdescricao.textContent = candidato.descricao;
         pexperiencia.textContent = candidato.experiencia;
         pformacao.textContent = candidato.formacao;
@@ -361,6 +414,7 @@ const descricaoVaga = document.getElementById('descricaoVaga');
 const habilidadesVaga = document.getElementById('requisitos');
 const salarioVaga = document.getElementById('salario');
 let empresa;
+const validarCnpj = /\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}/g;
 function validarE() {
     if (inputNomeEmpresa.value === '') {
         alert('Nome da empresa é obrigatório');
@@ -368,6 +422,10 @@ function validarE() {
     }
     if (inputCnpj.value === '') {
         alert('CNPJ é obrigatório');
+        return false;
+    }
+    if (!validarCnpj.test(inputCnpj.value)) {
+        alert('CNPJ inválido');
         return false;
     }
     if (inputPais.value === '') {
@@ -380,6 +438,10 @@ function validarE() {
     }
     if (inputCep.value === '') {
         alert('CEP é obrigatório');
+        return false;
+    }
+    if (!validarCep.test(inputcep.value)) {
+        alert('CEP inválido');
         return false;
     }
     if (inputDescricao.value === '') {
@@ -408,7 +470,7 @@ function salvarE(email, senha) {
     if (validarE()) {
         alert('Salvo com sucesso');
         const vaga = new Vaga(tituloVaga.value, descricaoVaga.value, habilidadesVaga.value, parseInt(salarioVaga.value));
-        const empresa = new Empresa(inputNomeEmpresa.value, emailIndex, senhaIndex, parseInt(inputCnpj.value), inputPais.value, inputEstado.value, inputCep.value, inputDescricao.value, vaga);
+        const empresa = new Empresa(inputNomeEmpresa.value, emailIndex, senhaIndex, inputCnpj.value, inputPais.value, inputEstado.value, inputCep.value, inputDescricao.value, vaga);
         localStorage.setItem('vaga', JSON.stringify(vaga));
         localStorage.setItem('empresa', JSON.stringify(empresa));
         window.location.href = 'perfilE.html';
@@ -471,7 +533,7 @@ function mudarDadosE() {
     if (empresaData) {
         const empresa = JSON.parse(empresaData);
         h3NomeE.textContent = empresa.nome;
-        pCnpj.textContent = empresa.cnpj.toString();
+        pCnpj.textContent = empresa.cnpj;
         pPais.textContent = empresa.pais;
         pEstado.textContent = empresa.estado;
         pCep.textContent = empresa.cep;
