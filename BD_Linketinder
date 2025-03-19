@@ -1,0 +1,72 @@
+/*CREATE TABLE candidato(
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(20) NOT NULL,
+	sobrenome VARCHAR(100) NOT NULL,
+	data_aniversario DATE NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	cpf VARCHAR(15) NOT NULL,
+	cep VARCHAR(9) NOT NULL,
+	descricao VARCHAR(200) NOT NULL,
+	senha VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE empresa(
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(20) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	cnpj VARCHAR(30) NOT NULL,
+	cep VARCHAR(9) NOT NULL,
+	descricao VARCHAR(200) NOT NULL,
+	senha VARCHAR(20) NOT NULL,
+	pais VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE vagas (
+  id_vaga SERIAL PRIMARY KEY,
+  id_empresa INT,
+  nome VARCHAR(255) NOT NULL,
+  descricao VARCHAR(255) NOT NULL,
+  local VARCHAR(255) NOT NULL,
+  FOREIGN KEY (id_empresa) REFERENCES empresa(id)
+); 
+
+CREATE TABLE competencias (
+  id SERIAL PRIMARY KEY,
+  nome_competencia VARCHAR(255) NOT NULL
+);
+
+ALTER TABLE candidato ADD id_competencia INTEGER;
+ALTER TABLE candidato 
+ADD CONSTRAINT fk_id_competencia FOREIGN KEY (id_competencia) REFERENCES competencias(id); 
+
+ALTER TABLE vagas ADD id_competencia INTEGER;
+ALTER TABLE vagas 
+ADD CONSTRAINT fk_id_competencia FOREIGN KEY (id_competencia) REFERENCES competencias(id); 
+
+CREATE TABLE match(
+	id SERIAL PRIMARY KEY,
+	id_candidato INT,
+	id_empresa INT, 
+	FOREIGN KEY (id_candidato) REFERENCES candidato(id),
+	FOREIGN KEY (id_empresa) REFERENCES empresa(id)
+); 
+
+INSERT INTO candidato (nome, sobrenome, data_aniversario, email, cpf, cep, descricao, senha)
+VALUES
+  ('João', 'Silva', '1990-01-01', 'joao.silva@example.com', '12345678901', '12345-678', 'Desenvolvedor Full Stack', 'joao123'),
+  ('Maria', 'Oliveira', '1992-02-02', 'maria.oliveira@example.com', '98765432101', '90123-456', 'Desenvolvedora Back-End', 'maria123'),
+  ('Pedro', 'Rodrigues', '1995-03-03', 'pedro.rodrigues@example.com', '11111111111', '78901-234', 'Desenvolvedor Front-End', 'pedro123'),
+  ('Lucas', 'Santos', '1998-04-04', 'lucas.santos@example.com', '22222222222', '56789-012', 'Desenvolvedor Mobile', 'lucas123'),
+  ('Gustavo', 'Lima', '2000-05-05', 'gustavo.lima@example.com', '33333333333', '34567-890', 'Desenvolvedor de Jogo', 'gustavo123'); 
+
+SELECT * FROM candidato; 
+
+INSERT INTO empresa (nome, cnpj, email, descricao, pais, cep, senha) VALUES
+  ('Tecnologia', '12345678000145', 'contato@empresatecnologia.com.br', 'Desenvolvimento de software e soluções de tecnologia', 'Brasil', '12345-678', 'empresatec'),
+  ('Pastelsoft', '98765432100145', 'contato@pastelsoft.com.br', 'Desenvolvimento de soluções de tecnologia para restaurantes e distribuidoras de bebida', 'Brasil', '90123-456', 'pastelsoft'),
+  ('Softtech', '11111111100145', 'contato@softtech.com.br', 'Desenvolvimento de software e soluções de tecnologia para empresas de todos os tamanhos', 'Brasil', '78901-234', 'softtech'),
+  ('Techsol', '22222222200145', 'contato@techsol.com.br', 'Desenvolvimento de soluções de tecnologia para empresas de tecnologia e inovação', 'Brasil', '56789-012', 'techsol'),
+  ('Inovatech', '33333333300145', 'contato@inovatech.com.br', 'Desenvolvimento de software e soluções de tecnologia para empresas de todos os setores', 'Brasil', '34567-890', 'inovatech');
+*/
+
+SELECT * FROM empresa */
