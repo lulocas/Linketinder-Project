@@ -16,6 +16,8 @@ Um backend feito com groovy e um banco de dados com PostgreSQL.
 - Feito no site dbdiagram.io
 - Tabelas: candidato, empresa, vagas, competencias e match
 
+![Image](https://github.com/user-attachments/assets/0e299025-b2ca-49c4-9299-c0bbf6107039)
+
   
 
 ## Autores
