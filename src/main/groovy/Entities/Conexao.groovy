@@ -15,7 +15,7 @@ class Conexao {
         }
     }
 
-    // Listar empresas
+
     def listarEmpresas(Sql sql) {
         println 'Empresas:'
         sql.eachRow("SELECT * FROM empresa") { row ->
@@ -33,7 +33,7 @@ class Conexao {
         print 'Data de Aniversário (YYYY-MM-DD): '
         def dataAniversarioInput = sc.nextLine()
 
-        // Converter o valor de entrada para o tipo `Date`
+
         def dataAniversario = java.sql.Date.valueOf(dataAniversarioInput)
 
         print 'Email: '
@@ -53,7 +53,7 @@ class Conexao {
     }
 
 
-    // Cadastro de empresas
+
     def cadastroEmpresas(Sql sql) {
         Scanner sc = new Scanner(System.in)
         println 'Cadastro de Empresa:'
@@ -77,7 +77,6 @@ class Conexao {
         println 'Empresa cadastrada com sucesso!'
     }
 
-    // Atualizar empresa
     def atualizarEmpresa(Sql sql) {
         Scanner sc = new Scanner(System.in)
 
@@ -118,7 +117,7 @@ class Conexao {
         println 'Empresa atualizada com sucesso!'
     }
 
-    // Atualizar candidato
+
     def atualizarCandidato(Sql sql) {
         Scanner sc = new Scanner(System.in)
 
@@ -165,7 +164,7 @@ class Conexao {
         println 'Candidato atualizado com sucesso!'
     }
 
-    // Excluir empresa
+
     def excluirEmpresa(Sql sql) {
         Scanner sc = new Scanner(System.in)
         print 'Informe o ID da empresa que deseja excluir: '
@@ -174,7 +173,7 @@ class Conexao {
         println 'Empresa excluída com sucesso!'
     }
 
-    // Excluir candidato
+
     def excluirCandidato(Sql sql) {
         Scanner sc = new Scanner(System.in)
         print 'Informe o ID do candidato que deseja excluir: '
