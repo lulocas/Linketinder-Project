@@ -1,5 +1,7 @@
 package Entities
 
+
+
 class Cadastro {
 
     def cadastroCandidato(ArrayList<Candidatos> candidatos, Candidatos candidato){
