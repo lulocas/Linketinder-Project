@@ -2,12 +2,15 @@ package Application
 
 import Entities.Cadastro
 import Entities.Candidatos
+import Entities.Conexao
 import Entities.Empresas
 
 class App {
 
 
     static void main(String[] args) {
+        Conexao conexao = new Conexao()
+
         ArrayList<Candidatos> candidatos = new ArrayList<Candidatos>()
         ArrayList<Empresas> empresas = new ArrayList<Empresas>()
 
@@ -33,37 +36,67 @@ class App {
         empresas.add(e4)
         empresas.add(e5)
 
-        menu(candidatos, empresas)
+        menu(conexao)
 
     }
 
-    static def menu(ArrayList<Candidatos> candidatos, ArrayList<Empresas> empresas) {
+    static def menu(Conexao conexao) {
         int opc = 0
         Scanner sc = new Scanner(System.in)
-        while (opc != 5) {
+        while (opc != 9) {
             println '1 - Listar empresas'
             println '2 - Listar candidatos'
             println '3 - Listar empresas e candidatos'
             println '4 - Cadastrar'
-            println '5 - Sair'
+            println '5 - Atualizar empresa'
+            println '6 - Excluir empresa'
+            println '7 - Atualizar candidato'
+            println '8 - Excluir candidato'
+            println '9 - Sair'
             print 'Escolha uma opção: '
             opc = sc.nextInt()
             println ' '
 
             switch (opc) {
                 case 1:
-                    listarEmpresas(empresas)
+                    conexao.listarEmpresas(conexao.sql)
                     break
                 case 2:
-                    listarCandidatos(candidatos)
+                    conexao.listCandidatos(conexao.sql)
                     break
                 case 3:
-                    listar(candidatos, empresas)
+                    println 'Empresas:'
+                    conexao.listarEmpresas(conexao.sql)
+                    println 'Candidatos:'
+                    conexao.listCandidatos(conexao.sql)
                     break
                 case 4:
-                    cadastro(candidatos, empresas)
+                    println '1 - Candidato'
+                    println '2 - Empresa'
+                    print 'Como deseja cadastrar: '
+                    int cadastroOpc = sc.nextInt()
+                    sc.nextLine()
+                    if (cadastroOpc == 1) {
+                        conexao.cadastroCandidatos(conexao.sql)
+                    } else if (cadastroOpc == 2) {
+                        conexao.cadastroEmpresas(conexao.sql)
+                    } else {
+                        println 'Opção inválida!'
+                    }
                     break
                 case 5:
+                    conexao.atualizarEmpresa(conexao.sql)
+                    break
+                case 6:
+                    conexao.excluirEmpresa(conexao.sql)
+                    break
+                case 7:
+                    conexao.atualizarCandidato(conexao.sql)
+                    break
+                case 8:
+                    conexao.excluirCandidato(conexao.sql)
+                    break
+                case 9:
                     println 'Tchau!'
                     break
                 default:
@@ -74,128 +107,6 @@ class App {
         }
     }
 
-    def listarEmpresas(ArrayList<Empresas> empresas) {
-        println 'Empresas: '
-        println ' '
-        for (Empresas empresa : empresas) {
-            println empresa
-            println ' '
-        }
-    }
 
-    def listarCandidatos(ArrayList<Candidatos> candidatos) {
-        println 'Candidatos: '
-        println ' '
-        for (Candidatos candidato : candidatos) {
-            println candidato
-            println ' '
-        }
-    }
 
-    def listar(ArrayList<Candidatos> candidatos, ArrayList<Empresas> empresas) {
-        println 'Candidatos: '
-        println ' '
-        for (Candidatos candidato : candidatos) {
-            println candidato
-            println ' '
-        }
-        println 'Empresas: '
-        println ' '
-        for (Empresas empresa : empresas) {
-            println empresa
-            println ' '
-        }
-    }
-
-    def cadastro(ArrayList<Candidatos> candidatos, ArrayList<Empresas> empresas) {
-        int opc = 0
-        Scanner sc = new Scanner(System.in)
-        println '1 - Candidato'
-        println '2 - Empresa'
-        print 'Como deseja cadastrar: '
-        opc = sc.nextInt()
-
-        if (opc == 1) {
-            cadastroCandidatos(candidatos)
-        } else if (opc == 2) {
-            cadastroEmpresas(empresas)
-        } else {
-            println ' '
-            println 'Não existe essa opção'
-            println ' '
-        }
-    }
-
-    def cadastroCandidatos(ArrayList<Candidatos> candidatos) {
-        Cadastro cadastro = new Cadastro()
-        Scanner sc = new Scanner(System.in)
-        int aux = 0
-        println ' '
-        while (aux == 0) {
-            print 'Nome: '
-            def nome = sc.nextLine()
-            print 'Email: '
-            def email = sc.nextLine()
-            print 'Idade: '
-            def idade = sc.nextInt()
-            sc.nextLine()
-            print 'Estado: '
-            def estado = sc.nextLine()
-            print 'CEP: '
-            def cep = sc.nextLine()
-            print 'Descrição: '
-            def descricao = sc.nextLine()
-            ArrayList<String> competencias = new ArrayList<String>()
-            println 'Escreva 3 competências'
-            for (int i = 0; i < 3; i++) {
-                print 'Competência ' + (i + 1) + ': '
-                def competencia = sc.nextLine()
-                competencias.add(competencia)
-            }
-            if (nome.isEmpty() || email.isEmpty() || idade.toString().isEmpty() || estado.isEmpty() || cep.isEmpty() || descricao.isEmpty()) {
-                println 'Não pode deixar categorias vazias'
-            } else {
-                aux = 1
-                def candidato = new Candidatos(nome, email, idade, estado, cep, descricao, competencias)
-                cadastro.cadastroCandidato(candidatos, candidato)
-            }
-        }
-    }
-
-    def cadastroEmpresas(ArrayList<Empresas> empresas) {
-        Cadastro cadastro = new Cadastro()
-        Scanner sc = new Scanner(System.in)
-        int aux = 0
-        println ' '
-        while (aux == 0) {
-            print 'Nome: '
-            def nome = sc.nextLine()
-            print 'Email: '
-            def email = sc.nextLine()
-            print 'CNPJ: '
-            def cnpj = sc.nextLine()
-            print 'País: '
-            def pais = sc.nextLine()
-            print 'Estado: '
-            def estado = sc.nextLine()
-            print 'CEP: '
-            def cep = sc.nextLine()
-            print 'Descrição: '
-            def descricao = sc.nextLine()
-            ArrayList<String> competencias = new ArrayList<String>()
-            println 'Escreva 3 competências que se espera dos candidatos: '
-            for (int i = 0; i < 3; i++) {
-                print 'Competência ' + (i + 1) + ': '
-                def competencia = sc.nextLine()
-                competencias.add(competencia)
-            }
-            if (nome.isEmpty() || email.isEmpty() || cnpj.toString().isEmpty() || pais.isEmpty() || estado.isEmpty() || cep.isEmpty() || descricao.isEmpty()) {
-                println 'Não pode deixar categorias vazias'
-            } else {
-                aux = 1
-                def empresa = new Empresas(nome, email, cnpj, pais, estado, cep, descricao, competencias)
-                cadastro.cadastroEmpresa(empresas, empresa)
-            }
-        }
-    }
 }
