@@ -154,44 +154,19 @@ const botaoIndex = document.getElementById('botaoCadastrar') as HTMLButtonElemen
 const seuNomeElementIndex = document.getElementById('seuNome');
 const seuNomeElement = document.getElementById('seuNome');
 const inputsCadastro = document.getElementsByClassName('inputCadastro')  as HTMLCollectionOf<HTMLInputElement>;
+const inputsEdicaoC = document.getElementsByClassName('inputEdicao')  as HTMLCollectionOf<HTMLInputElement>;
+const inputsEdicaoE = document.getElementsByClassName('inputEdicao')  as HTMLCollectionOf<HTMLInputElement>;
 let usuarioIndex: string;
 let emailIndex: string;
 let senhaIndex: string;
 const validarEmail = /\S+@\w+\.\w{2,6}(\.\w{2})?/g;
 
-/* function validar(): boolean {
-    if (inputEmailIndex.value === '') {
-        alert('Email é obrigatório');
-        return false;
-    }
-    if(!validarEmail.test(inputEmailIndex.value)){
-        alert('Email inválido');
-        return false;
-    }
-    if (inputSenhaIndex.value === '') {
-        alert('Senha é obrigatório');
-        return false;
-    }
-    if (inputConfirmaIndex.value === '') {
-        alert('Confirmação de senha é obrigatória');
-        return false;
-    }
-    if (inputSenhaIndex.value !== inputConfirmaIndex.value) {
-        alert('Senhas não conferem');
-        return false;
-    }
-    if (!candidatoInputIndex.checked && !empresaInputIndex.checked) {
-        alert('Selecione um tipo de cadastro');
-        return false;
-    }
-    return true;
-} */
 
 function validar(): boolean {
     if (window.location.pathname.endsWith('/paginainicial.html')) {
         for(let i = 0; i < inputsCadastro.length; i++){
             if (inputsCadastro[i].value === '') {
-                alert(`${inputsCadastro[i].tagName} é obrigatório`);
+                alert(`${inputsCadastro[i].id} é obrigatório`);
                 return false;
             }
         }
@@ -208,6 +183,49 @@ function validar(): boolean {
             return false;
         }
         return true;
+    }else if(window.location.pathname.endsWith('/edicaoC.html')){
+        for(let i = 0; i < (inputsEdicaoC.length - 1); i++){
+            if (inputsEdicaoC[i].value === '') {
+                alert(`${inputsEdicaoC[i].id} é obrigatório`);
+                return false;
+            }
+        }
+        if(listaHab.length < 3) {
+            alert('Adicione pelo menos 3 habilidades');
+            return false;
+        }
+        if(!validarLinkedin.test(inputLinkedin.value)){
+            alert('Linkedin inválido');
+            return false
+        }
+        if(!validarTelefone.test(inputTelefone.value)){
+            alert('Telefone inválido');
+            return false    
+        }
+        if(!validarCpf.test(inputcpf.value)){
+            alert('CPF inválido');
+            return false    
+        }
+        if(!validarCep.test(inputcep.value)){
+            alert('CEP inválido');
+            return false    
+        }
+
+    }else if(window.location.pathname.endsWith('/edicaoE.html')){
+        for(let i = 0; i < (inputsEdicaoE.length - 1); i++){
+            if (inputsEdicaoE[i].value === '') {
+                alert(`${inputsEdicaoE[i].id} é obrigatório`);
+                return false;
+            }
+        }
+        if(!validarCnpj.test(inputCnpj.value)){
+            alert('CNPJ inválido');
+            return false    
+        }
+        if(!validarCep.test(inputcep.value)){
+            alert('CEP inválido');
+            return false    
+        }
     }
     return true;
 }
@@ -257,66 +275,6 @@ function mudarNome(nome: string) {
     } 
 }
 
-function validarEdicao(): boolean {
-    if(inputLinkedin.value === ''){
-        alert('Linkedin é obrigatório');
-        return false;
-    }
-    if(!validarLinkedin.test(inputLinkedin.value)){
-        alert('Linkedin inválido');
-        return false
-    }
-    if (inputTelefone.value === '') {
-        alert('Telefone é obrigatório');
-        return false;
-    }
-    if(!validarTelefone.test(inputTelefone.value)){
-        alert('Telefone inválido');
-        return false    
-    }
-    if (inputNomeIndex.value === ''){
-        alert('Nome completo é obrigatório');
-        return false;
-    }
-    if (inputcpf.value === '') {
-        alert('CPF é obrigatório');
-        return false;
-    }
-    if(!validarCpf.test(inputcpf.value)){
-        alert('CPF inválido');
-        return false    
-    }
-    if (inputidade.value === '') {
-        alert('Idade é obrigatório');
-        return false;
-    }
-    if (inputestado.value === '') {
-        alert('Estado é obrigatório');
-        return false;
-    }
-    if (inputcep.value === '') {
-        alert('CEP é obrigatório');
-        return false;
-    }
-    if(!validarCep.test(inputcep.value)){
-        alert('CEP inválido');
-        return false    
-    }
-    if (inputdescricao.value === '') {
-        alert('Descrição é obrigatório');
-        return false;
-    }
-    if (inputformacao.value === '') {
-        alert('Formação é obrigatório');
-        return false;
-    }
-    if(listaHab.length < 3) {
-        alert('Adicione pelo menos 3 habilidades');
-        return false;
-    }
-    return true;
-}
-
 function escreverHab(){
     if(inputhabilidades.value !== '') {
         criarHabilidade();
@@ -337,11 +295,19 @@ function criarHabilidade() {
 }
 
 function salvar(email: string, senha: string) {
-    if(validarEdicao()){
+    if(validar()){
         alert('Salvo com sucesso');
-        candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab, "", inputTelefone.value, inputLinkedin.value);
-        localStorage.setItem('candidato', JSON.stringify(candidato));
-        window.location.href = 'perfilC.html';
+        if(window.location.pathname.endsWith('/edicaoC.html')){
+            candidato = new CandidatoIndex(inputNomeIndex.value, email, senha, inputcpf.value, parseInt(inputidade.value), inputestado.value, inputcep.value, inputdescricao.value, inputformacao.value, inputexperiencia.value, listaHab, "", inputTelefone.value, inputLinkedin.value);
+            localStorage.setItem('candidato', JSON.stringify(candidato));
+            window.location.href = 'perfilC.html';
+        }else if(window.location.pathname.endsWith('/edicaoE.html')){
+            const vaga = new Vaga(tituloVaga.value, descricaoVaga.value, habilidadesVaga.value, parseInt(salarioVaga.value));
+            const empresa = new Empresa(inputNomeEmpresa.value, emailIndex, senhaIndex, inputCnpj.value, inputPais.value, inputEstado.value, inputCep.value, inputDescricao.value, vaga);
+            localStorage.setItem('vaga', JSON.stringify(vaga));
+            localStorage.setItem('empresa', JSON.stringify(empresa));
+            window.location.href = 'perfilE.html';
+        }  
     }
 }
 
@@ -509,68 +475,6 @@ const salarioVaga = document.getElementById('salario') as HTMLInputElement;
 let empresa: Empresa | undefined;
 const validarCnpj = /\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}/g;
 
-function validarE(){
-    if (inputNomeEmpresa.value === '') {
-        alert('Nome da empresa é obrigatório');
-        return false;
-    }
-    if (inputCnpj.value === '') {
-        alert('CNPJ é obrigatório');
-        return false;
-    }
-    if(!validarCnpj.test(inputCnpj.value)){
-        alert('CNPJ inválido');
-        return false    
-    }
-    if (inputPais.value === '') {
-        alert('País é obrigatório');
-        return false;
-    }
-    if (inputEstado.value === '') {
-        alert('Estado é obrigatório');
-        return false;
-    }
-    if (inputCep.value === '') {
-        alert('CEP é obrigatório');
-        return false;
-    }
-    if(!validarCep.test(inputcep.value)){
-        alert('CEP inválido');
-        return false    
-    }
-    if (inputDescricao.value === '') {
-        alert('Descrição é obrigatório');
-        return false;
-    }
-    if (tituloVaga.value === '') {  
-        alert('Título da vaga é obrigatório');
-        return false;
-    }
-    if (descricaoVaga.value === '') {
-        alert('Descrição da vaga é obrigatório');
-        return false;
-    }
-    if (habilidadesVaga.value === '') {
-        alert('Habilidades da vaga é obrigatório');
-        return false;
-    }
-    if (salarioVaga.value === '') {
-        alert('Salário da vaga é obrigatório');
-        return false;
-    }
-    return true;
-}
-
-function salvarE(email: string, senha: string){
-    if(validarE()){
-        alert('Salvo com sucesso');
-        const vaga = new Vaga(tituloVaga.value, descricaoVaga.value, habilidadesVaga.value, parseInt(salarioVaga.value));
-        const empresa = new Empresa(inputNomeEmpresa.value, emailIndex, senhaIndex, inputCnpj.value, inputPais.value, inputEstado.value, inputCep.value, inputDescricao.value, vaga);
-        localStorage.setItem('vaga', JSON.stringify(vaga));
-        localStorage.setItem('empresa', JSON.stringify(empresa));
-        window.location.href = 'perfilE.html';
-    }
-}
 
 // perfil E
 const h3NomeE = document.getElementById("seuNome") as HTMLElement;
@@ -688,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(window.location.pathname.endsWith('/edicaoE.html')){
         if(botaoSalvarE){
-            botaoSalvarE.addEventListener('click', () => salvarE(emailIndex, senhaIndex));
+            botaoSalvarE.addEventListener('click', () => salvar(emailIndex, senhaIndex));
         }
     }
     if(window.location.pathname.endsWith('/perfilE.html')){
