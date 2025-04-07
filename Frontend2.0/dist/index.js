@@ -111,16 +111,17 @@ const empresaInputIndex = document.getElementById('empresaBotao');
 const botaoIndex = document.getElementById('botaoCadastrar');
 const seuNomeElementIndex = document.getElementById('seuNome');
 const seuNomeElement = document.getElementById('seuNome');
+const inputsCadastro = document.getElementsByClassName('inputCadastro');
 let usuarioIndex;
 let emailIndex;
 let senhaIndex;
 const validarEmail = /\S+@\w+\.\w{2,6}(\.\w{2})?/g;
-function validar() {
+/* function validar(): boolean {
     if (inputEmailIndex.value === '') {
         alert('Email é obrigatório');
         return false;
     }
-    if (!validarEmail.test(inputEmailIndex.value)) {
+    if(!validarEmail.test(inputEmailIndex.value)){
         alert('Email inválido');
         return false;
     }
@@ -139,6 +140,30 @@ function validar() {
     if (!candidatoInputIndex.checked && !empresaInputIndex.checked) {
         alert('Selecione um tipo de cadastro');
         return false;
+    }
+    return true;
+} */
+function validar() {
+    if (window.location.pathname.endsWith('/paginainicial.html')) {
+        for (let i = 0; i < inputsCadastro.length; i++) {
+            if (inputsCadastro[i].value === '') {
+                alert(`${inputsCadastro[i].tagName} é obrigatório`);
+                return false;
+            }
+        }
+        if (!validarEmail.test(inputEmailIndex.value)) {
+            alert('Email inválido');
+            return false;
+        }
+        if (inputSenhaIndex.value !== inputConfirmaIndex.value) {
+            alert('Senhas não conferem');
+            return false;
+        }
+        if (!candidatoInputIndex.checked && !empresaInputIndex.checked) {
+            alert('Selecione um tipo de cadastro');
+            return false;
+        }
+        return true;
     }
     return true;
 }
