@@ -1,6 +1,5 @@
 package Application
 
-import Entities.Cadastro
 import Entities.Candidatos
 import Entities.Conexao
 import Entities.Empresas

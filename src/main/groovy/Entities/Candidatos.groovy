@@ -2,21 +2,57 @@ package Entities
 
 class Candidatos{
     private String Nome;
+    private String Sobrenome;
     private String Email;
-    private int Idade;
-    private String Estado;
+    private String Aniversario;
+    private String Cpf;
     private String Cep;
     private String Descricao;
+    private String Senha;
     private ArrayList<String> Competencias;
 
-    Candidatos(nome, email, idade, estado, cep, descricao, competencias){
+    Candidatos(nome, sobrenome, aniversario, email, cpf, cep, descricao, senha){
         Nome = nome
         Email = email
-        Idade = idade
-        Estado = estado
+        Sobrenome = sobrenome
+        Aniversario = aniversario
+        Cpf = cpf
         Cep = cep
+        Senha = senha
         Descricao = descricao
         Competencias = competencias
+    }
+
+    void setSobrenome(String sobrenome){
+        Sobrenome = sobrenome;
+    }
+
+    void setAniversario(String aniversario){
+        Aniversario = aniversario;
+    }
+
+    void setSenha(String senha){
+        Senha = senha;
+    }
+
+    void setCpf(String cpf){
+        Cpf = cpf;
+    }
+
+    String getSobrenome(){
+        return this.Sobrenome;
+    }
+
+    String getAniversario(){
+        return this.Aniversario;
+    }
+
+    String getSenha(){
+        return this.Senha;
+    }
+
+    String getCpf(){
+        return this.Cpf;
     }
 
     void setCompetencias(ArrayList<String> competencias){
@@ -53,14 +89,6 @@ class Candidatos{
 
     String getEmail(){
         return this.Email;
-    }
-
-    int getIdade(){
-        return this.Idade;
-    }
-
-    String getEstado(){
-        return this.Estado;
     }
 
     String getCep(){

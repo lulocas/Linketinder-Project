@@ -47,6 +47,8 @@ class Conexao {
         print 'Senha: '
         def senha = sc.nextLine()
 
+        // def candidatoN = new Candidatos(nome, sobrenome, dataAniversarioInput, email, cpf, cep, descricao, senha)
+
         sql.executeInsert("INSERT INTO candidato (nome, sobrenome, data_aniversario, email, cpf, cep, descricao, senha) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
                 [nome, sobrenome, dataAniversario, email, cpf, cep, descricao, senha])
         println 'Candidato cadastrado com sucesso!'

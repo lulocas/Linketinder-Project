@@ -1,4 +1,3 @@
-import Entities.Cadastro;
 import Entities.Candidatos;
 import Entities.Empresas;
 import org.junit.jupiter.api.Test;
