@@ -1,16 +1,16 @@
 package Application
 
 import Entities.Candidatos
-import Entities.Conexao
 import Entities.Empresas
+import Entities.Menu
 
 class App {
 
 
     static void main(String[] args) {
-        Conexao conexao = new Conexao()
+        Menu menu = new Menu()
 
-        ArrayList<Candidatos> candidatos = new ArrayList<Candidatos>()
+        /* ArrayList<Candidatos> candidatos = new ArrayList<Candidatos>()
         ArrayList<Empresas> empresas = new ArrayList<Empresas>()
 
         def c1 = new Candidatos('João Pedro Silva', 'joaopedro.silva@email.com', 32, 'São Paulo', '05405-000', 'Profissional experiente em desenvolvimento de software com mais de 8 anos de experiência em liderança de projetos e equipe. Estou sempre procurando por novas oportunidades para crescer e aprender.', ['Java', 'Groovy', 'HTML'])
@@ -33,79 +33,12 @@ class App {
         empresas.add(e2)
         empresas.add(e3)
         empresas.add(e4)
-        empresas.add(e5)
+        empresas.add(e5) */
 
-        menu(conexao)
-
-    }
-
-    static def menu(Conexao conexao) {
-        int opc = 0
-        Scanner sc = new Scanner(System.in)
-        while (opc != 9) {
-            println '1 - Listar empresas'
-            println '2 - Listar candidatos'
-            println '3 - Listar empresas e candidatos'
-            println '4 - Cadastrar'
-            println '5 - Atualizar empresa'
-            println '6 - Excluir empresa'
-            println '7 - Atualizar candidato'
-            println '8 - Excluir candidato'
-            println '9 - Sair'
-            print 'Escolha uma opção: '
-            opc = sc.nextInt()
-            println ' '
-
-            switch (opc) {
-                case 1:
-                    conexao.listarEmpresas(conexao.sql)
-                    break
-                case 2:
-                    conexao.listCandidatos(conexao.sql)
-                    break
-                case 3:
-                    println 'Empresas:'
-                    conexao.listarEmpresas(conexao.sql)
-                    println 'Candidatos:'
-                    conexao.listCandidatos(conexao.sql)
-                    break
-                case 4:
-                    println '1 - Candidato'
-                    println '2 - Empresa'
-                    print 'Como deseja cadastrar: '
-                    int cadastroOpc = sc.nextInt()
-                    sc.nextLine()
-                    if (cadastroOpc == 1) {
-                        conexao.cadastroCandidatos(conexao.sql)
-                    } else if (cadastroOpc == 2) {
-                        conexao.cadastroEmpresas(conexao.sql)
-                    } else {
-                        println 'Opção inválida!'
-                    }
-                    break
-                case 5:
-                    conexao.atualizarEmpresa(conexao.sql)
-                    break
-                case 6:
-                    conexao.excluirEmpresa(conexao.sql)
-                    break
-                case 7:
-                    conexao.atualizarCandidato(conexao.sql)
-                    break
-                case 8:
-                    conexao.excluirCandidato(conexao.sql)
-                    break
-                case 9:
-                    println 'Tchau!'
-                    break
-                default:
-                    println 'Essa opção não existe'
-                    println ' '
-                    break
-            }
+        int opc = 0;
+        while(opc != 9){
+            opc = menu.mostrarOpcoes(opc)
         }
+
     }
-
-
-
 }
