@@ -21,7 +21,7 @@ class Conexao {
         sql.eachRow("SELECT * FROM empresa") { row ->
             println "ID: ${row.id}, Nome: ${row.nome}, Email: ${row.email}, CNPJ: ${row.cnpj}, CEP: ${row.cep}, Descrição: ${row.descricao}, País: ${row.pais}"
         }
-    } */
+    }
 
     def cadastroCandidatos(Sql sql) {
         Scanner sc = new Scanner(System.in)
@@ -164,7 +164,7 @@ class Conexao {
         """
         sql.executeUpdate(updateQuery, [nome ?: null, sobrenome ?: null, dataAniversario ?: null, email ?: null, cpf ?: null, cep ?: null, descricao ?: null, senha ?: null, idCompetencia ?: null, id])
         println 'Candidato atualizado com sucesso!'
-    }
+    } */
 
 
     def excluirEmpresa(Sql sql) {

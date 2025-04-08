@@ -4,6 +4,8 @@ class Menu {
 
     def conexao = new Conexao()
     def listar = new Listar()
+    def cadastro = new Cadastro()
+    def atualizar = new Atualizar()
     def sc = new Scanner(System.in)
 
     def mostrarOpcoes(opc){
@@ -46,16 +48,16 @@ class Menu {
                 int cadastroOpc = sc.nextInt()
                 sc.nextLine()
                 if (cadastroOpc == 1) {
-                    conexao.cadastroCandidatos(conexao.sql)
+                    cadastro.cadastroCandidatos(conexao.sql)
                 } else if (cadastroOpc == 2) {
-                    conexao.cadastroEmpresas(conexao.sql)
+                    cadastro.cadastroEmpresas(conexao.sql)
                 } else {
                     println 'Opção inválida!'
                 }
                 return 4
                 break
             case 5:
-                conexao.atualizarEmpresa(conexao.sql)
+                atualizar.atualizarEmpresa(conexao.sql)
                 return 5
                 break
             case 6:
@@ -63,7 +65,7 @@ class Menu {
                 return 6
                 break
             case 7:
-                conexao.atualizarCandidato(conexao.sql)
+                atualizar.atualizarCandidato(conexao.sql)
                 return 7
                 break
             case 8:
