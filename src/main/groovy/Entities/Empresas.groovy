@@ -8,9 +8,10 @@ class Empresas{
     private String Estado
     private String CEP
     private String Descricao
+    private String Senha
     private ArrayList<String> Competencias
 
-    Empresas(nome, email, cnpj, pais, estado, cep, descricao, competencias){
+    Empresas(nome, email, cnpj, pais, estado, cep, descricao, senha){
         Nome = nome
         Email = email
         CNPJ = cnpj
@@ -18,11 +19,14 @@ class Empresas{
         Estado = estado
         CEP = cep
         Descricao = descricao
-        Competencias = competencias
+        Senha = senha
     }
 
     void setCompetencias(ArrayList<String> competencias){
         Competencias = competencias;
+    }
+    void setSenha(String senha){
+        Senha = senha;
     }
 
     void setNome(String nome){
@@ -51,6 +55,9 @@ class Empresas{
 
     void setDescricao(String descricao){
         Descricao = descricao;
+    }
+    String getSenha(){
+        return this.Senha;
     }
 
     String getNome(){

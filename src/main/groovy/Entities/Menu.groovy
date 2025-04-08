@@ -7,6 +7,7 @@ class Menu {
     def cadastro = new Cadastro()
     def atualizar = new Atualizar()
     def excluir = new Excluir()
+    def login = new Login()
     def sc = new Scanner(System.in)
 
     def mostrarOpcoes(opc){
@@ -14,11 +15,12 @@ class Menu {
         println '2 - Listar candidatos'
         println '3 - Listar empresas e candidatos'
         println '4 - Cadastrar'
-        println '5 - Atualizar empresa'
-        println '6 - Excluir empresa'
-        println '7 - Atualizar candidato'
-        println '8 - Excluir candidato'
-        println '9 - Sair'
+        println '5 - Login'
+        println '6 - Atualizar empresa'
+        println '7 - Excluir empresa'
+        println '8 - Atualizar candidato'
+        println '9 - Excluir candidato'
+        println '10 - Sair'
         print 'Escolha uma opção: '
         opc = sc.nextInt()
 
@@ -58,24 +60,28 @@ class Menu {
                 return 4
                 break
             case 5:
-                atualizar.atualizarEmpresa(conexao.sql)
+                login.logar(conexao.sql)
                 return 5
                 break
             case 6:
-                excluir.excluirEmpresa(conexao.sql)
+                atualizar.atualizarEmpresa(conexao.sql)
                 return 6
                 break
             case 7:
-                atualizar.atualizarCandidato(conexao.sql)
+                excluir.excluirEmpresa(conexao.sql)
                 return 7
                 break
             case 8:
-                excluir.excluirCandidato(conexao.sql)
+                atualizar.atualizarCandidato(conexao.sql)
                 return 8
                 break
             case 9:
-                println 'Tchau!'
+                excluir.excluirCandidato(conexao.sql)
                 return 9
+                break
+            case 10:
+                println 'Tchau!'
+                return 10
                 break
             default:
                 println 'Essa opção não existe'

@@ -35,7 +35,7 @@ class App {
 
 
         int opc = 0;
-        while(opc != 9){
+        while(opc != 10){
             opc = menu.mostrarOpcoes(opc)
         }
 
