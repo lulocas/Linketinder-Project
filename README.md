@@ -10,6 +10,9 @@ Um backend feito com groovy e um banco de dados com PostgreSQL.
 
 - Menu listar
 - Cadastro
+- Login
+- Atualizar
+- Excluir
 
 
 ## Modelagem Lógica
@@ -21,6 +24,8 @@ Um backend feito com groovy e um banco de dados com PostgreSQL.
 ## Refatoração
 - Arrumei a função de validar em uma so assimo como a de salvar no documento Typescript
 - Tirei a classe de cadastro que não estava mais sendo usada
+- Separei o menu em uma classe especifica
+- Criei classes para cadastro, listar, atualizar e excluir
 
 ## Autores
 
