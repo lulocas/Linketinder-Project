@@ -3,6 +3,7 @@ package Entities
 class Menu {
 
     def conexao = new Conexao()
+    def listar = new Listar()
     def sc = new Scanner(System.in)
 
     def mostrarOpcoes(opc){
@@ -24,18 +25,18 @@ class Menu {
     int escolherOpcao(int opc){
         switch (opc) {
             case 1:
-                conexao.listarEmpresas(conexao.sql)
+                listar.listarEmpresas(conexao.sql)
                 return 1
                 break
             case 2:
-                conexao.listCandidatos(conexao.sql)
+                listar.listarCandidatos(conexao.sql)
                 return 2
                 break
             case 3:
                 println 'Empresas:'
-                conexao.listarEmpresas(conexao.sql)
+                listar.listarEmpresas(conexao.sql)
                 println 'Candidatos:'
-                conexao.listCandidatos(conexao.sql)
+                listar.listarCandidatos(conexao.sql)
                 return 3
                 break
             case 4:

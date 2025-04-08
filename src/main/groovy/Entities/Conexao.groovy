@@ -8,7 +8,7 @@ class Conexao {
 
     def sql = Sql.newInstance(url, user, password, 'org.postgresql.Driver')
 
-    def listCandidatos(Sql sql) {
+    /* def listCandidatos(Sql sql) {
         println 'Candidatos:'
         sql.eachRow("SELECT * FROM candidato") { row ->
             println "ID: ${row.id}, Nome: ${row.nome} ${row.sobrenome}, Data de Aniversário: ${row.data_aniversario}, Email: ${row.email}, CPF: ${row.cpf}, CEP: ${row.cep}, Descrição: ${row.descricao}, ID Competência: ${row.id_competencia}"
@@ -21,7 +21,7 @@ class Conexao {
         sql.eachRow("SELECT * FROM empresa") { row ->
             println "ID: ${row.id}, Nome: ${row.nome}, Email: ${row.email}, CNPJ: ${row.cnpj}, CEP: ${row.cep}, Descrição: ${row.descricao}, País: ${row.pais}"
         }
-    }
+    } */
 
     def cadastroCandidatos(Sql sql) {
         Scanner sc = new Scanner(System.in)
