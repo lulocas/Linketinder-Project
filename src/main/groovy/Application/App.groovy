@@ -1,7 +1,5 @@
 package Application
 
-import Entities.Candidatos
-import Entities.Empresas
 import Entities.Menu
 
 class App {
@@ -34,6 +32,7 @@ class App {
         empresas.add(e3)
         empresas.add(e4)
         empresas.add(e5) */
+
 
         int opc = 0;
         while(opc != 9){

@@ -6,6 +6,7 @@ class Menu {
     def listar = new Listar()
     def cadastro = new Cadastro()
     def atualizar = new Atualizar()
+    def excluir = new Excluir()
     def sc = new Scanner(System.in)
 
     def mostrarOpcoes(opc){
@@ -61,7 +62,7 @@ class Menu {
                 return 5
                 break
             case 6:
-                conexao.excluirEmpresa(conexao.sql)
+                excluir.excluirEmpresa(conexao.sql)
                 return 6
                 break
             case 7:
@@ -69,7 +70,7 @@ class Menu {
                 return 7
                 break
             case 8:
-                conexao.excluirCandidato(conexao.sql)
+                excluir.excluirCandidato(conexao.sql)
                 return 8
                 break
             case 9:
